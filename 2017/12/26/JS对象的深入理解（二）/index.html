@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JavaScript对象的深入理解 （二） | 山哥的地盘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#17bbd2">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="之前提到，构造函数方法创建对象存在着方法不共享的问题，因此引申出了原型模式创建对象 原型模式  原型模式旨在创建一个模版对象，该对象的所有属性和方法被其实例所共享。  原型的概念不同于构造函数模式创建对象只能单级即成，得益于原型链的概念，原型模式可实现类似其他OOP语言的多级继承。  原型链：一系列有继承关系的函数（对象）中[[prototype]]属性自底向上的指向  先给一个例子： 12345">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript对象的深入理解 （二）">
+<meta property="og:url" content="https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/index.html">
+<meta property="og:site_name" content="山哥的地盘">
+<meta property="og:description" content="之前提到，构造函数方法创建对象存在着方法不共享的问题，因此引申出了原型模式创建对象 原型模式  原型模式旨在创建一个模版对象，该对象的所有属性和方法被其实例所共享。  原型的概念不同于构造函数模式创建对象只能单级即成，得益于原型链的概念，原型模式可实现类似其他OOP语言的多级继承。  原型链：一系列有继承关系的函数（对象）中[[prototype]]属性自底向上的指向  先给一个例子： 12345">
+<meta property="og:updated_time" content="2017-12-26T09:17:06.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript对象的深入理解 （二）">
+<meta name="twitter:description" content="之前提到，构造函数方法创建对象存在着方法不共享的问题，因此引申出了原型模式创建对象 原型模式  原型模式旨在创建一个模版对象，该对象的所有属性和方法被其实例所共享。  原型的概念不同于构造函数模式创建对象只能单级即成，得益于原型链的概念，原型模式可实现类似其他OOP语言的多级继承。  原型链：一系列有继承关系的函数（对象）中[[prototype]]属性自底向上的指向  先给一个例子： 12345">
+    
+        <link rel="alternate" type="application/atom+xml" title="山哥的地盘" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.ocm" title="sls0927@gmail.ocm" class="mail">sls0927@gmail.ocm</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript对象的深入理解 （二）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript对象的深入理解 （二）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-26T09:17:00.000Z" itemprop="datePublished" class="page-time">
+  2017-12-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原型模式"><span class="post-toc-number">1.</span> <span class="post-toc-text">原型模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#原型的概念"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">原型的概念</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建原型对象"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">创建原型对象</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#原型对象的问题"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">原型对象的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组合使用构造函数与原型模式"><span class="post-toc-number">2.</span> <span class="post-toc-text">组合使用构造函数与原型模式</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-JS对象的深入理解（二）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript对象的深入理解 （二）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-26 17:17:00" datetime="2017-12-26T09:17:00.000Z"  itemprop="datePublished">2017-12-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>之前提到，构造函数方法创建对象存在着<strong>方法不共享</strong>的问题，因此引申出了原型模式创建对象</p>
+<h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><blockquote>
+<p> 原型模式旨在创建一个<strong>模版对象</strong>，该对象的<strong>所有属性和方法</strong>被其实例所共享。</p>
+</blockquote>
+<h4 id="原型的概念"><a href="#原型的概念" class="headerlink" title="原型的概念"></a>原型的概念</h4><p>不同于构造函数模式创建对象只能单级即成，得益于<strong>原型链</strong>的概念，原型模式可实现类似其他OOP语言的多级继承。</p>
+<blockquote>
+<p>原型链：一系列有<strong>继承关系</strong>的函数（对象）中[[prototype]]属性<strong>自底向上</strong>的指向</p>
+</blockquote>
+<p>先给一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">  	<span class="keyword">constructor</span>: Person,</span><br><span class="line">    name: "Jonathan",</span><br><span class="line">    age: 23,</span><br><span class="line">  	job: developer,</span><br><span class="line">  	sayName: function() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">person1 = <span class="keyword">new</span> Person();</span><br><span class="line">person2 = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+<p>该例子中各对象的关系如下</p>
+<p>//</p>
+<p>每一个函数（对象）都可以视为一个<strong>模版</strong>，向上看，该对象的[[prototype]]</p>
+<h4 id="创建原型对象"><a href="#创建原型对象" class="headerlink" title="创建原型对象"></a>创建原型对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">  	<span class="keyword">constructor</span>: Person,</span><br><span class="line">    name: "Jonathan",</span><br><span class="line">    age: 23,</span><br><span class="line">  	job: developer,</span><br><span class="line">  	sayName: function() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line">person1.sayName(); <span class="comment">//"Jonathan"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line">person2.sayName(); <span class="comment">//"Jonathan"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person1.sayName == person2.sayName); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>要点</p>
+<ol>
+<li>先命名一个空函数</li>
+<li>用对象字面量方式，为该函数的.prototype属性添加原型属性及方法</li>
+<li>为了constructor属性的正确指向，应先把constructor指向该对象</li>
+</ol>
+<h4 id="原型对象的问题"><a href="#原型对象的问题" class="headerlink" title="原型对象的问题"></a>原型对象的问题</h4><p>由于众多实例共享原型的属性，因此改变其中某个实例的属性会影响到全局，造成<strong>属性污染</strong>，例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: Person,</span><br><span class="line">    name : "Nicholas",</span><br><span class="line">    age : 29,</span><br><span class="line">    job : "Software Engineer",</span><br><span class="line">    friends : ["Shelby", "Court"],</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">person1.friends.push(<span class="string">"Van"</span>);</span><br><span class="line"></span><br><span class="line">alert(person1.friends);    <span class="comment">//"Shelby,Court,Van"</span></span><br><span class="line">alert(person2.friends);    <span class="comment">//"Shelby,Court,Van"</span></span><br><span class="line">alert(person1.friends === person2.friends);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>可见，person1的friends属性污染了person2的friends属性。为避免这种情况，引入组合构造函数与原型模式。</p>
+<h3 id="组合使用构造函数与原型模式"><a href="#组合使用构造函数与原型模式" class="headerlink" title="组合使用构造函数与原型模式"></a>组合使用构造函数与原型模式</h3><p>单一使用原型对象的问题在于<strong>所有属性皆共享</strong>，若不想共享某属性，则可放入构造函数中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line">    <span class="keyword">this</span>.friends = [<span class="string">"Boy next door"</span>, <span class="string">"Deep dark fantasy"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: Person,</span><br><span class="line">    sayName : function () &#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"Nicholas"</span>, <span class="number">29</span>, <span class="string">"Software Engineer"</span>);</span><br><span class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"Greg"</span>, <span class="number">27</span>, <span class="string">"Doctor"</span>);</span><br><span class="line"></span><br><span class="line">person1.friends.push(<span class="string">"Van"</span>);</span><br><span class="line"></span><br><span class="line">alert(person1.friends);    <span class="comment">//"Shelby,Court,Van"</span></span><br><span class="line">alert(person2.friends);    <span class="comment">//"Shelby,Court"</span></span><br><span class="line">alert(person1.friends === person2.friends);  <span class="comment">//false</span></span><br><span class="line">alert(person1.sayName === person2.sayName);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-26T09:17:06.832Z" itemprop="dateUpdated">2017-12-26 17:17:06</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/blog/2017/12/26/JS对象的深入理解（二）/" target="_blank" rel="external">https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/</a>
+        
+    </div>
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/avatar.jpg" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/&title=《JavaScript对象的深入理解 （二）》 — 山哥的地盘&pic=https://jumper3.github.io/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/&title=《JavaScript对象的深入理解 （二）》 — 山哥的地盘&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript对象的深入理解 （二）》 — 山哥的地盘&url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/12/26/JS对象的深入理解（一）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript对象的深入理解 （一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/blog/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/blog/img/wechat.jpg" data-alipay="/blog/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Jonathan &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/&title=《JavaScript对象的深入理解 （二）》 — 山哥的地盘&pic=https://jumper3.github.io/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/&title=《JavaScript对象的深入理解 （二）》 — 山哥的地盘&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript对象的深入理解 （二）》 — 山哥的地盘&url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2017/12/26/JS对象的深入理解（二）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3awW7bMBAE0Pz/TzdATw1cOzNLbp0CTyfBkUQ+HkhmuB8f8fXr9/Xn/eMvj88//p7/9fX95QsPDw9v1PVn12te/mTexWf4pA9/+T4eHh7eGi+foPOhSZq/O0x4eHh4P433+pdku3yyPODh4eH9j7zXb7Udyrfyb1j38PDw8AJe3ky7mU420Hkri1kLHh4eXsybHYC99379fA8PDw9vdKp+a/JtywhOFqEv7+Lh4eEt8PLgNZl12yAjj4bzyKMeXTw8PLwDXv7yLHTIB7EtWfgmzMXDw8Nb47Vdyafv85g4meePUmo8PDy8mJc3M9uI3y0dSHjDnAMPDw8v5rUvJN1N7rcXCTw8PLw9Xt7MbGpuO5SEC3n8gYeHh7fNmxVa5SFFMkD5Jj7qAx4eHt6beOfLRluOkIQX0VDi4eHhLfNmpQCzI7F8gIZneu3JHh4eHt6IdzdCPT/6ygeuCCPw8PDwjnlt6JAfWbXPz75Q1Efg4eHhLfDajXIeUiRdvxDaPustHh4e3lVeMjW3m9pZ6UAeRhRxMx4eHt4ar93OtvjkC23gGx2z4eHh4S3w2lh2NmXfOkhro2Q8PDy8DV5bONVO8XcHom4LDw8P7028fFI+R7ZlAd/0Hw8PD2+BN4sk2mOtvYKqqC08PDy8BV67GORXHnMkLeZxxtHpHB4eHl7Aa0um2hKo8zKsoy0+Hh4e3j/ntR3Nh+OkHKFY5PDw8PCu8k62yG0EnD9zFNre+g8ADw8Pbz7HZuVNo/g134K3b+Hh4eFt806i2CQmuBXLDjfxeHh4eGu8ZDHII9c2tD3ZIuPh4eH9fN7J/VHePBpEPDw8vPfyZoA22M0Xm2ShwsPDw9vjtQUBbfPJVjgJLOpYGQ8PD2+Bd3IAljPy465bB2Z4eHh4C7xPcPX5Pu5AmkgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '葛炮';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '光头';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
