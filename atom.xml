@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://jumper3.github.io/blog/"/>
-  <updated>2017-12-26T09:06:07.576Z</updated>
+  <updated>2017-12-27T02:48:59.177Z</updated>
   <id>https://jumper3.github.io/blog/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://jumper3.github.io/blog/2017/12/26/%E7%99%BE%E8%AF%8D%E6%96%A9%E4%B8%89%E4%B8%AA%E6%9C%88/"/>
     <id>https://jumper3.github.io/blog/2017/12/26/百词斩三个月/</id>
     <published>2017-12-26T08:07:59.000Z</published>
-    <updated>2017-12-26T09:06:07.576Z</updated>
+    <updated>2017-12-27T02:48:59.177Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="三个月期间做过哪些项目"><a href="#三个月期间做过哪些项目" class="headerlink" title="三个月期间做过哪些项目"></a>三个月期间做过哪些项目</h4><ol><li><p>系统思维课-视频中心</p></li><li><p>系统思维课-小书单</p></li><li><p>百词斩阅读者-阅读者</p><p>​</p></li></ol><h4 id="使用过哪些技术"><a href="#使用过哪些技术" class="headerlink" title="使用过哪些技术"></a>使用过哪些技术</h4><h5 id="视频中心"><a href="#视频中心" class="headerlink" title="视频中心"></a>视频中心</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>利用模版功能渲染页面</td></tr><tr><td>Redis</td><td>用户信息的key-value储存</td></tr><tr><td>Bootstrap</td><td>标题栏、按钮</td></tr><tr><td>Swiper</td><td>首页轮播图，支持触控，为移动设备优化</td></tr><tr><td>Google Analytics</td><td>网站流量分析、用户统计</td></tr><tr><td>Terminal</td><td>Linux常用指令、SSH</td></tr></tbody></table><h5 id="小书单"><a href="#小书单" class="headerlink" title="小书单"></a>小书单</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>小程序后端框架</td></tr><tr><td>MySQL</td><td>小程序主力数据库</td></tr><tr><td>小程序API</td><td>完成小程序的数据处理及交互</td></tr><tr><td>小程序框架</td><td>类Vue的MVVM框架，用于模版渲染</td></tr><tr><td>ES6</td><td>使用了迭代器、模块化、块级绑定、字符串模版等新特性</td></tr></tbody></table><h5 id="阅读者"><a href="#阅读者" class="headerlink" title="阅读者"></a>阅读者</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Vue.js</td><td>阅读者前端框架、组件化</td></tr><tr><td>Vue-router</td><td>页面路由</td></tr><tr><td>Animated.css</td><td>通过第三方CSS库优化交互</td></tr><tr><td>axios</td><td>AJAX</td></tr><tr><td>jQuery</td><td>项目初期用DOM思想快速开发</td></tr><tr><td>Less</td><td>嵌套语法，scope作用域</td></tr><tr><td>Node.js-Express</td><td>亮哥主后端，我辅助，顺便了解promise</td></tr></tbody></table><h5 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h5><p>Vscode、Bitbuckets(Git)</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="三个月期间做过哪些项目"><a href="#三个月期间做过哪些项目" class="headerlink" title="三个月期间做过哪些项目"></a>三个月期间做过哪些项目</h4><ol><li><p>系统思维课-视频中心</p></li><li><p>系统思维课-小书单</p></li><li><p>百词斩阅读者-阅读者</p><p>​</p></li></ol><h4 id="使用过哪些技术"><a href="#使用过哪些技术" class="headerlink" title="使用过哪些技术"></a>使用过哪些技术</h4><h5 id="视频中心"><a href="#视频中心" class="headerlink" title="视频中心"></a>视频中心</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>利用模版功能渲染页面</td></tr><tr><td>Redis</td><td>用户信息的key-value储存</td></tr><tr><td>Bootstrap</td><td>标题栏、按钮、分页Tab</td></tr><tr><td>Swiper</td><td>首页轮播图，支持触控，为移动设备优化</td></tr><tr><td>Google Analytics</td><td>网站流量分析、用户统计</td></tr><tr><td>Terminal</td><td>Linux常用指令、SSH</td></tr></tbody></table><h5 id="小书单"><a href="#小书单" class="headerlink" title="小书单"></a>小书单</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>小程序后端框架</td></tr><tr><td>MySQL</td><td>小程序主力数据库</td></tr><tr><td>小程序API</td><td>完成小程序的数据处理及交互</td></tr><tr><td>小程序框架</td><td>类Vue的MVVM框架，用于模版渲染</td></tr><tr><td>ES6</td><td>使用了迭代器、模块化、块级绑定、字符串模版等新特性</td></tr></tbody></table><h5 id="阅读者"><a href="#阅读者" class="headerlink" title="阅读者"></a>阅读者</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Vue.js</td><td>阅读者前端框架、组件化</td></tr><tr><td>Vue-router</td><td>页面路由</td></tr><tr><td>Animated.css</td><td>通过第三方CSS库优化交互</td></tr><tr><td>axios</td><td>AJAX</td></tr><tr><td>jQuery</td><td>项目初期用DOM思想快速开发</td></tr><tr><td>Less</td><td>嵌套语法，scope作用域</td></tr><tr><td>Node.js-Express</td><td>亮哥主后端，我辅助，顺便了解promise</td></tr></tbody></table><h5 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h5><p>Vscode、Bitbuckets(Git)</p><h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><h5 id="1-视频中心"><a href="#1-视频中心" class="headerlink" title="1.视频中心"></a>1.视频中心</h5><p>视频中心位于“斩家”公众号内，内容包括百词斩内部课程系统思维课的课程视频、公司内部视频分享及课程小摘要三个栏目</p>]]></content>
     
     <summary type="html">
     
@@ -39,6 +39,29 @@
     
     
       <category term="前端" scheme="https://jumper3.github.io/blog/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>删除数组中的指定元素</title>
+    <link href="https://jumper3.github.io/blog/2017/12/02/%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0/"/>
+    <id>https://jumper3.github.io/blog/2017/12/02/删除数组中的指定元素/</id>
+    <published>2017-12-02T10:17:00.000Z</published>
+    <updated>2017-12-27T02:55:04.221Z</updated>
+    
+    <content type="html"><![CDATA[<p>JavaScript的数组中默认不支持删除指定元素的操作，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let book_id = [1,2,3,4]</span><br><span class="line">book_id.delete(4) //错误，JS数组没有该方法</span><br></pre></td></tr></table></figure></p><p>因此，解决的办法有</p><ul><li>使用集合Set<br>ES6中新加入了集合类型Set()，因为集合本身支持add(),delete(),remove()，forEach()等操作，因此可以直接将Array()转化为Set()<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let book_id = new Set([1,2,3,4])</span><br><span class="line">book_id.delete(4)</span><br><span class="line">console.log(book_id)  //Set &#123; 1, 2, 3 &#125;</span><br></pre></td></tr></table></figure></li></ul><p>但要注意到，Set()本身的限制</p><blockquote><p>Set是一种<strong>无重复值的有序列表</strong>，允许对它包含的数据进行快速访问，从而增加了一个追踪离散值的更有效方式                                                    </p></blockquote><p>因此，如果本身要操作的数据不符合Set()的要求，则要用到ES5原生方法</p><ul><li>使用indexOf()<br>其实是通过indexOf()找到要删除元素在数组中的索引，然后用splice()删除<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let book_name = [&apos;1984&apos;,&apos;动物庄园&apos;,&apos;乌合之众&apos;]</span><br><span class="line">let i = book_name.indexOf(&apos;动物庄园&apos;)</span><br><span class="line">book_name.splice(i,1)</span><br><span class="line">console.log(book_name)  //[ &apos;1984&apos;, &apos;乌合之众&apos; ]</span><br></pre></td></tr></table></figure></li></ul><p>搞定！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;JavaScript的数组中默认不支持删除指定元素的操作，如&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://jumper3.github.io/blog/tags/JavaScript/"/>
     
   </entry>
   
