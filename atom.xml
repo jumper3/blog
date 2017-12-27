@@ -90,6 +90,33 @@
   </entry>
   
   <entry>
+    <title>关于排序问题的思考</title>
+    <link href="https://jumper3.github.io/blog/2017/09/20/%E5%85%B3%E4%BA%8E%E6%8E%92%E5%BA%8F%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/"/>
+    <id>https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/</id>
+    <published>2017-09-20T09:07:59.000Z</published>
+    <updated>2017-12-27T03:12:01.853Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天去面试，被问到了以下问题：</p><blockquote><p>从1000个正整数中找出最大的五个数</p></blockquote><h3 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h3><p>思路：先生成一个含1000个数的随机数组Arr1，然后建立一个空数组Arr2，及一个变量max=0。<br>然后遍历Arr1，其中大于max的数存入数组2。便利过后，得到<strong>递增</strong>数组Arr2。<br>用slice方法取Arr2后五位即为最大五位。<br>    var Arr1 = [];<br>    for (var i = 0; i&lt;1000; i++){<br>        Arr1[i] = Math.floor(Math.random()*1000+1);<br>    }; //先生成1000个正整数</p><pre><code>var Arr2 = new Array();var max = 0;for (var i = 0; i&lt;1000; i++){    if (Arr1[i]&gt;max){        Arr2.push(Arr1[i]);        max = Arr1[i];    } };var result = Arr2.slice[-5];console.log(result);</code></pre><p>运行结果如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(5) [982,985,993,996,998]</span><br></pre></td></tr></table></figure><p>这个算法看似能找出最大数，但是存在以下问题：<br>当Arr1为[100,999,…,1]这样的递减数列时，只能找出第一个最大数，无法将Arr2凑满。而且，面试官还问到了时间复杂度的问题，当时我并没有概念。</p><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>为妥善解决问题，还是将Arr1数组从小到大重新排列，这样就不会受到原数据中大小次序影响。<br>因此可以采用算法学中的排序方法，如冒泡排序、选择排序、插入排序等。</p><h3 id="概念解释"><a href="#概念解释" class="headerlink" title="概念解释"></a>概念解释</h3><p>算法复杂度的概念（包括时间复杂度和空间复杂度）：</p><blockquote><p><a href="http://blog.csdn.net/booirror/article/details/7707551/" target="_blank" rel="noopener">http://blog.csdn.net/booirror/article/details/7707551/</a><br><a href="http://www.jianshu.com/p/99bac69fdd97" target="_blank" rel="noopener">http://www.jianshu.com/p/99bac69fdd97</a></p></blockquote><p>排序算法的Javascript实现：</p><blockquote><p><a href="https://github.com/damonare/Sorts" target="_blank" rel="noopener">https://github.com/damonare/Sorts</a></p></blockquote><h3 id="解法优化"><a href="#解法优化" class="headerlink" title="解法优化"></a>解法优化</h3><p>之前解法的时间复杂度为O(n)。<br>现在采用更稳妥的，可排序的冒泡排序算法，时间复杂度为O(n*n)。代码实现如下：</p><pre><code>var Arr1 = [];for (var i = 0; i&lt;1000; i++){    Arr1[i] = Math.floor(Math.random()*1000+1);};function bubbleSort(arr) {    var len = arr.length;    for (var i = 0; i &lt; len; i++) {        for (var j = 0; j &lt; len - 1 - i; j++) {            if (arr[j] &gt; arr[j+1]) {        //相邻元素两两对比                var temp = arr[j+1];        //元素交换                arr[j+1] = arr[j];                arr[j] = temp;            }        }    }    return arr;}var Arr2 = bubbleSort(Arr1);var result = Arr2.slice(-5);console.log(result);</code></pre><p>代码运行截图：  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(5) [998,999,999,1000,1000]</span><br></pre></td></tr></table></figure><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>显然，实现了目的，但是算法上还可以采用时间复杂度更低的算法。</p><p>怎样才能找到尽可能优的解法呢？</p><blockquote><p>且听下回分解</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天去面试，被问到了以下问题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从1000个正整数中找出最大的五个数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;我的解法&quot;&gt;&lt;a href=&quot;#我的解法&quot; class=&quot;headerlink&quot; title=&quot;我的解法&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="https://jumper3.github.io/blog/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript对象的深入理解 （一）</title>
     <link href="https://jumper3.github.io/blog/2017/09/19/JS%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://jumper3.github.io/blog/2017/09/19/JS对象的深入理解（一）/</id>
@@ -166,6 +193,31 @@
     
     
       <category term="HTML" scheme="https://jumper3.github.io/blog/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>形参和实参</title>
+    <link href="https://jumper3.github.io/blog/2017/08/28/%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/"/>
+    <id>https://jumper3.github.io/blog/2017/08/28/形参和实参/</id>
+    <published>2017-08-28T09:07:59.000Z</published>
+    <updated>2017-12-27T03:06:33.580Z</updated>
+    
+    <content type="html"><![CDATA[<p>###实参(argument)：</p><blockquote><p>全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都<strong>必须具有确定的值</strong>， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。      </p></blockquote><p>###形参(parameter)：</p><blockquote><p>全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参数,目的是用来<strong>接收调用该函数时传入的参数</strong>.在调用函数时，实参将赋值给形参。因而，必须注意实参的个数，类型应与形参一一对应，并且实参必须要有确定的值。</p></blockquote><p>###形参和实参的区别<br>形参出现在函数定义中，在整个函数体内都可以使用， 离开该函数则不能使用。 实参出现在主调函数中，进入被调函数后，实参变量也不能使用。 </p><p>形参和实参的功能是作数据传送。发生函数调用时， 主调函数把实参的值传送给被调函数的形参从而实现主调函数向被调函数的数据传送。</p><ol><li>形参变量只有在被调用时才分配内存单元，在调用结束时， 即刻释放所分配的内存单元。因此，形参只有在函数内部有效。 函数调用结束返回主调函数后则不能再使用该形参变量。 </li><li>实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。 </li><li>实参和形参在数量上，类型上，顺序上应严格一致， 否则会发生“类型不匹配”的错误。 </li><li>函数调用中发生的数据传送是单向的。 即只能把实参的值传送给形参，而不能把形参的值反向地传送给实参。 因此在函数调用过程中，形参的值发生改变，而实参中的值不会变化。</li><li>当形参和实参不是指针类型时，在该函数运行时，形参和实参是不同的变量，他们在内存中位于不同的位置，形参将实参的内容复制一份，在该函数运行结束的时候形参被释放，而实参内容不会改变。</li></ol><p>而如果函数的参数是指针类型变量,在调用该函数的过程中，传给函数的是实参的地址，在函数体内部使用的也是实参的地址，即使用的就是实参本身。所以在函数体内部可以改变实参的值。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;###实参(argument)：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都&lt;strong&gt;必须具有确定的值&lt;/strong&gt;， 以便把这些
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://jumper3.github.io/blog/tags/JavaScript/"/>
     
   </entry>
   

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>关于排序问题的思考 | 山哥的地盘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#17bbd2">
+    
+    
+    <meta name="keywords" content="算法">
+    <meta name="description" content="今天去面试，被问到了以下问题：  从1000个正整数中找出最大的五个数  我的解法思路：先生成一个含1000个数的随机数组Arr1，然后建立一个空数组Arr2，及一个变量max=0。然后遍历Arr1，其中大于max的数存入数组2。便利过后，得到递增数组Arr2。用slice方法取Arr2后五位即为最大五位。    var Arr1 = [];    for (var i = 0; i&amp;lt;100">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于排序问题的思考">
+<meta property="og:url" content="https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/index.html">
+<meta property="og:site_name" content="山哥的地盘">
+<meta property="og:description" content="今天去面试，被问到了以下问题：  从1000个正整数中找出最大的五个数  我的解法思路：先生成一个含1000个数的随机数组Arr1，然后建立一个空数组Arr2，及一个变量max=0。然后遍历Arr1，其中大于max的数存入数组2。便利过后，得到递增数组Arr2。用slice方法取Arr2后五位即为最大五位。    var Arr1 = [];    for (var i = 0; i&amp;lt;100">
+<meta property="og:updated_time" content="2017-12-27T03:12:01.853Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于排序问题的思考">
+<meta name="twitter:description" content="今天去面试，被问到了以下问题：  从1000个正整数中找出最大的五个数  我的解法思路：先生成一个含1000个数的随机数组Arr1，然后建立一个空数组Arr2，及一个变量max=0。然后遍历Arr1，其中大于max的数存入数组2。便利过后，得到递增数组Arr2。用slice方法取Arr2后五位即为最大五位。    var Arr1 = [];    for (var i = 0; i&amp;lt;100">
+    
+        <link rel="alternate" type="application/atom+xml" title="山哥的地盘" href="/blog/atom.xml">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/brand.jpg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.ocm" title="sls0927@gmail.ocm" class="mail">sls0927@gmail.ocm</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect active">
+              <a href="/blog/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">关于排序问题的思考</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">关于排序问题的思考</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-20T09:07:59.000Z" itemprop="datePublished" class="page-time">
+  2017-09-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#我的解法"><span class="post-toc-number">1.</span> <span class="post-toc-text">我的解法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概念解释"><span class="post-toc-number">3.</span> <span class="post-toc-text">概念解释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解法优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">解法优化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最后"><span class="post-toc-number">5.</span> <span class="post-toc-text">最后</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-关于排序问题的思考"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">关于排序问题的思考</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-20 17:07:59" datetime="2017-09-20T09:07:59.000Z"  itemprop="datePublished">2017-09-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天去面试，被问到了以下问题：</p>
+<blockquote>
+<p>从1000个正整数中找出最大的五个数</p>
+</blockquote>
+<h3 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h3><p>思路：先生成一个含1000个数的随机数组Arr1，然后建立一个空数组Arr2，及一个变量max=0。<br>然后遍历Arr1，其中大于max的数存入数组2。便利过后，得到<strong>递增</strong>数组Arr2。<br>用slice方法取Arr2后五位即为最大五位。<br>    var Arr1 = [];<br>    for (var i = 0; i&lt;1000; i++){<br>        Arr1[i] = Math.floor(Math.random()*1000+1);<br>    }; //先生成1000个正整数</p>
+<pre><code>var Arr2 = new Array();
+var max = 0;
+
+for (var i = 0; i&lt;1000; i++){
+    if (Arr1[i]&gt;max){
+        Arr2.push(Arr1[i]);
+        max = Arr1[i];
+    } 
+};
+var result = Arr2.slice[-5];
+console.log(result);
+</code></pre><p>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(5) [982,985,993,996,998]</span><br></pre></td></tr></table></figure>
+<p>这个算法看似能找出最大数，但是存在以下问题：<br>当Arr1为[100,999,…,1]这样的递减数列时，只能找出第一个最大数，无法将Arr2凑满。而且，面试官还问到了时间复杂度的问题，当时我并没有概念。</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>为妥善解决问题，还是将Arr1数组从小到大重新排列，这样就不会受到原数据中大小次序影响。<br>因此可以采用算法学中的排序方法，如冒泡排序、选择排序、插入排序等。</p>
+<h3 id="概念解释"><a href="#概念解释" class="headerlink" title="概念解释"></a>概念解释</h3><p>算法复杂度的概念（包括时间复杂度和空间复杂度）：</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/booirror/article/details/7707551/" target="_blank" rel="noopener">http://blog.csdn.net/booirror/article/details/7707551/</a><br><a href="http://www.jianshu.com/p/99bac69fdd97" target="_blank" rel="noopener">http://www.jianshu.com/p/99bac69fdd97</a></p>
+</blockquote>
+<p>排序算法的Javascript实现：</p>
+<blockquote>
+<p><a href="https://github.com/damonare/Sorts" target="_blank" rel="noopener">https://github.com/damonare/Sorts</a></p>
+</blockquote>
+<h3 id="解法优化"><a href="#解法优化" class="headerlink" title="解法优化"></a>解法优化</h3><p>之前解法的时间复杂度为O(n)。<br>现在采用更稳妥的，可排序的冒泡排序算法，时间复杂度为O(n*n)。代码实现如下：</p>
+<pre><code>var Arr1 = [];
+for (var i = 0; i&lt;1000; i++){
+    Arr1[i] = Math.floor(Math.random()*1000+1);
+};
+
+function bubbleSort(arr) {
+    var len = arr.length;
+    for (var i = 0; i &lt; len; i++) {
+        for (var j = 0; j &lt; len - 1 - i; j++) {
+            if (arr[j] &gt; arr[j+1]) {        //相邻元素两两对比
+                var temp = arr[j+1];        //元素交换
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+var Arr2 = bubbleSort(Arr1);
+var result = Arr2.slice(-5);
+console.log(result);
+</code></pre><p>代码运行截图：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(5) [998,999,999,1000,1000]</span><br></pre></td></tr></table></figure>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>显然，实现了目的，但是算法上还可以采用时间复杂度更低的算法。</p>
+<p>怎样才能找到尽可能优的解法呢？</p>
+<blockquote>
+<p>且听下回分解</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-27T03:12:01.853Z" itemprop="dateUpdated">2017-12-27 11:12:01</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/blog/2017/09/20/关于排序问题的思考/" target="_blank" rel="external">https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/</a>
+        
+    </div>
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/avatar.jpg" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/算法/">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/&title=《关于排序问题的思考》 — 山哥的地盘&pic=https://jumper3.github.io/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/&title=《关于排序问题的思考》 — 山哥的地盘&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于排序问题的思考》 — 山哥的地盘&url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/blog/2017/11/02/JS对象的深入理解（二）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript对象的深入理解 （二）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2017/09/19/JS对象的深入理解（一）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript对象的深入理解 （一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/blog/" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/blog/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Jonathan &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/&title=《关于排序问题的思考》 — 山哥的地盘&pic=https://jumper3.github.io/blog/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/&title=《关于排序问题的思考》 — 山哥的地盘&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于排序问题的思考》 — 山哥的地盘&url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2017/09/20/关于排序问题的思考/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3ay24bMRAEQP//TyvXBMYq3TOkIQO1J8HaB4sGlqPmfH3Fx+vt8f2c5Kqn+7y/9uvGgYeHh3d56DPY33///vn92J4+R1OAh4eHd42X33r/+KdlIJmsfDx4eHh4n8l7WmCerno/6KQexsPDw/uNvFm5nJyZLyd4eHh4n8Db3C6foFls8UNZCx4eHl7My3eRPufzlf09PDw8vPWueh68Jn9vX+iv9YGHh4d3gzeLaGfBRFs6t4Hv45l4eHh4R3ltULtpjdq3CLTBBx4eHt4N3n6rvm0CeH9+W1jXIQUeHh7eUV5y61nge6q5akXFw8PDO8qbNU7NgoY88N2ExXh4eHj3ePnm06yN4MYdinPw8PDwLvBmw8oXj2TDrA1z26IcDw8P7ywv2VKatWTNQuF9kFGky3h4eHgL3izDyIc7ayzIp6lOpvHw8PAWvH0DQduYlQ+xLbiLEhwPDw9vwTvV/LQZxKxlIVrS8PDw8C7wZkNvmwY2oW1bLv/nf4iHh4e35rU/7Nst/02D16ZR7J+SGg8PD+8Cb/bS3zQZJNfuFxg8PDy8G7x8uLNtsLOl86xNAQ8PD+8eL88/86HXm/ojXt0fgYeHh7fmta1UbRvBqanJI2Y8PDy8n+G1j5+Bk0iivU+0SODh4eEd5e2brpJrkyI+DziGax0eHh7eBd4seJ21EWyWigKPh4eHd5nXBruzV/YGkC9veHh4eDd4r/LIy+v227aYjr7Fw8PDu8Dbb9vnD56V720R3y4neHh4eDNe/qLP44ZNK0ACzicRDw8P7x6v3Tlqt8raZ21iCDw8PLxP483C1v3y0049Hh4e3ufwZuVyPmXJVcXigYeHh3eNt9+yykOEthBv8Xh4eHi3eZsf/Kc2+JNwdhZV4OHh4R3l/QHhEpKXrOtjHQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '葛炮';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '光头';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
