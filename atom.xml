@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>山哥的地盘</title>
+  <title>冷吃兔</title>
   
-  
+  <subtitle>大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</subtitle>
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://jumper3.github.io/blog/"/>
