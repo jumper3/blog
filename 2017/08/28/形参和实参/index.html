@@ -20,17 +20,18 @@
     
     
     <meta name="keywords" content="JavaScript">
-    <meta name="description" content="###实参(argument)：  全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。        ###形参(parameter)：  全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数">
+    <meta name="description" content="实参(argument)： 全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。        形参(parameter)： 全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="形参和实参">
 <meta property="og:url" content="https://jumper3.github.io/blog/2017/08/28/形参和实参/index.html">
 <meta property="og:site_name" content="冷吃兔">
-<meta property="og:description" content="###实参(argument)：  全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。        ###形参(parameter)：  全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数">
-<meta property="og:updated_time" content="2017-12-27T03:06:33.580Z">
+<meta property="og:description" content="实参(argument)： 全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。        形参(parameter)： 全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-02T02:46:10.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形参和实参">
-<meta name="twitter:description" content="###实参(argument)：  全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。        ###形参(parameter)：  全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数">
+<meta name="twitter:description" content="实参(argument)： 全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。        形参(parameter)： 全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参">
     
         <link rel="alternate" type="application/atom+xml" title="冷吃兔" href="/blog/atom.xml">
     
@@ -131,7 +132,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -167,6 +168,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实参-argument-："><span class="post-toc-number">1.</span> <span class="post-toc-text">实参(argument)：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#形参-parameter-："><span class="post-toc-number">2.</span> <span class="post-toc-text">形参(parameter)：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#形参和实参的区别"><span class="post-toc-number">3.</span> <span class="post-toc-text">形参和实参的区别</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-形参和实参"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -186,15 +194,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>###实参(argument)：</p>
-<blockquote>
+            <h3 id="实参-argument-："><a href="#实参-argument-：" class="headerlink" title="实参(argument)："></a>实参(argument)：</h3><blockquote>
 <p>全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都<strong>必须具有确定的值</strong>， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。      </p>
 </blockquote>
-<p>###形参(parameter)：</p>
-<blockquote>
+<h3 id="形参-parameter-："><a href="#形参-parameter-：" class="headerlink" title="形参(parameter)："></a>形参(parameter)：</h3><blockquote>
 <p>全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参数,目的是用来<strong>接收调用该函数时传入的参数</strong>.在调用函数时，实参将赋值给形参。因而，必须注意实参的个数，类型应与形参一一对应，并且实参必须要有确定的值。</p>
 </blockquote>
-<p>###形参和实参的区别<br>形参出现在函数定义中，在整个函数体内都可以使用， 离开该函数则不能使用。 实参出现在主调函数中，进入被调函数后，实参变量也不能使用。 </p>
+<h3 id="形参和实参的区别"><a href="#形参和实参的区别" class="headerlink" title="形参和实参的区别"></a>形参和实参的区别</h3><p>形参出现在函数定义中，在整个函数体内都可以使用， 离开该函数则不能使用。 实参出现在主调函数中，进入被调函数后，实参变量也不能使用。 </p>
 <p>形参和实参的功能是作数据传送。发生函数调用时， 主调函数把实参的值传送给被调函数的形参从而实现主调函数向被调函数的数据传送。</p>
 <ol>
 <li>形参变量只有在被调用时才分配内存单元，在调用结束时， 即刻释放所分配的内存单元。因此，形参只有在函数内部有效。 函数调用结束返回主调函数后则不能再使用该形参变量。 </li>
@@ -211,7 +217,7 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2017-12-27T03:06:33.580Z" itemprop="dateUpdated">2017-12-27 11:06:33</time>
+    Last updated: <time datetime="2018-01-02T02:46:10.942Z" itemprop="dateUpdated">2018-01-02 10:46:10</time>
 </span><br>
 
 

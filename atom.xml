@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://jumper3.github.io/blog/"/>
-  <updated>2017-12-27T02:48:59.177Z</updated>
+  <updated>2017-12-27T09:01:24.859Z</updated>
   <id>https://jumper3.github.io/blog/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://jumper3.github.io/blog/2017/12/26/%E7%99%BE%E8%AF%8D%E6%96%A9%E4%B8%89%E4%B8%AA%E6%9C%88/"/>
     <id>https://jumper3.github.io/blog/2017/12/26/百词斩三个月/</id>
     <published>2017-12-26T08:07:59.000Z</published>
-    <updated>2017-12-27T02:48:59.177Z</updated>
+    <updated>2017-12-27T09:01:24.859Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="三个月期间做过哪些项目"><a href="#三个月期间做过哪些项目" class="headerlink" title="三个月期间做过哪些项目"></a>三个月期间做过哪些项目</h4><ol><li><p>系统思维课-视频中心</p></li><li><p>系统思维课-小书单</p></li><li><p>百词斩阅读者-阅读者</p><p>​</p></li></ol><h4 id="使用过哪些技术"><a href="#使用过哪些技术" class="headerlink" title="使用过哪些技术"></a>使用过哪些技术</h4><h5 id="视频中心"><a href="#视频中心" class="headerlink" title="视频中心"></a>视频中心</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>利用模版功能渲染页面</td></tr><tr><td>Redis</td><td>用户信息的key-value储存</td></tr><tr><td>Bootstrap</td><td>标题栏、按钮、分页Tab</td></tr><tr><td>Swiper</td><td>首页轮播图，支持触控，为移动设备优化</td></tr><tr><td>Google Analytics</td><td>网站流量分析、用户统计</td></tr><tr><td>Terminal</td><td>Linux常用指令、SSH</td></tr></tbody></table><h5 id="小书单"><a href="#小书单" class="headerlink" title="小书单"></a>小书单</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>小程序后端框架</td></tr><tr><td>MySQL</td><td>小程序主力数据库</td></tr><tr><td>小程序API</td><td>完成小程序的数据处理及交互</td></tr><tr><td>小程序框架</td><td>类Vue的MVVM框架，用于模版渲染</td></tr><tr><td>ES6</td><td>使用了迭代器、模块化、块级绑定、字符串模版等新特性</td></tr></tbody></table><h5 id="阅读者"><a href="#阅读者" class="headerlink" title="阅读者"></a>阅读者</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Vue.js</td><td>阅读者前端框架、组件化</td></tr><tr><td>Vue-router</td><td>页面路由</td></tr><tr><td>Animated.css</td><td>通过第三方CSS库优化交互</td></tr><tr><td>axios</td><td>AJAX</td></tr><tr><td>jQuery</td><td>项目初期用DOM思想快速开发</td></tr><tr><td>Less</td><td>嵌套语法，scope作用域</td></tr><tr><td>Node.js-Express</td><td>亮哥主后端，我辅助，顺便了解promise</td></tr></tbody></table><h5 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h5><p>Vscode、Bitbuckets(Git)</p><h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><h5 id="1-视频中心"><a href="#1-视频中心" class="headerlink" title="1.视频中心"></a>1.视频中心</h5><p>视频中心位于“斩家”公众号内，内容包括百词斩内部课程系统思维课的课程视频、公司内部视频分享及课程小摘要三个栏目</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="三个月期间做过哪些项目"><a href="#三个月期间做过哪些项目" class="headerlink" title="三个月期间做过哪些项目"></a>三个月期间做过哪些项目</h4><ol><li><p>系统思维课-视频中心</p></li><li><p>系统思维课-小书单</p></li><li><p>百词斩阅读者-阅读者</p><p>​</p></li></ol><h4 id="使用过哪些技术"><a href="#使用过哪些技术" class="headerlink" title="使用过哪些技术"></a>使用过哪些技术</h4><h5 id="视频中心"><a href="#视频中心" class="headerlink" title="视频中心"></a>视频中心</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>利用模版功能渲染页面</td></tr><tr><td>Redis</td><td>用户信息的key-value储存</td></tr><tr><td>Bootstrap</td><td>标题栏、按钮、分页Tab</td></tr><tr><td>Swiper</td><td>首页轮播图，支持触控，为移动设备优化</td></tr><tr><td>Google Analytics</td><td>网站流量分析、用户统计</td></tr><tr><td>Terminal</td><td>Linux常用指令、SSH</td></tr></tbody></table><h5 id="小书单"><a href="#小书单" class="headerlink" title="小书单"></a>小书单</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Tornado</td><td>小程序后端框架</td></tr><tr><td>MySQL</td><td>小程序主力数据库</td></tr><tr><td>小程序API</td><td>完成小程序的数据处理及交互</td></tr><tr><td>小程序框架</td><td>类Vue的MVVM框架，用于模版渲染</td></tr><tr><td>ES6</td><td>使用了迭代器、模块化、块级绑定、字符串模版等新特性</td></tr></tbody></table><h5 id="阅读者"><a href="#阅读者" class="headerlink" title="阅读者"></a>阅读者</h5><table><thead><tr><th>技术</th><th>用途</th></tr></thead><tbody><tr><td>Vue.js</td><td>阅读者前端框架、组件化</td></tr><tr><td>Vue-router</td><td>页面路由</td></tr><tr><td>Animated.css</td><td>通过第三方CSS库优化交互</td></tr><tr><td>axios</td><td>AJAX</td></tr><tr><td>jQuery</td><td>项目初期用DOM思想快速开发</td></tr><tr><td>Less</td><td>嵌套语法，scope作用域</td></tr><tr><td>Node.js-Express</td><td>亮哥主后端，我辅助，顺便了解promise</td></tr></tbody></table><h5 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h5><p>Vscode、Bitbuckets(Git)、Zeplin（一款原型制作软件，方便抠图）</p><h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><h5 id="1-视频中心"><a href="#1-视频中心" class="headerlink" title="1.视频中心"></a>1.视频中心</h5><p>视频中心位于“斩家”公众号内，内容包括百词斩内部课程系统思维课的课程视频、公司内部视频分享及课程小摘要三个栏目</p><h5 id="2-小书单"><a href="#2-小书单" class="headerlink" title="2.小书单"></a>2.小书单</h5><h5 id="3-阅读者"><a href="#3-阅读者" class="headerlink" title="3.阅读者"></a>3.阅读者</h5><h4 id="遇见过哪些糟心的事-都是怎么解决的"><a href="#遇见过哪些糟心的事-都是怎么解决的" class="headerlink" title="遇见过哪些糟心的事 / 都是怎么解决的"></a>遇见过哪些糟心的事 / 都是怎么解决的</h4><h5 id="1-Python字符串编码问题"><a href="#1-Python字符串编码问题" class="headerlink" title="1.Python字符串编码问题"></a>1.Python字符串编码问题</h5><h5 id="2-JSON的保留字符"><a href="#2-JSON的保留字符" class="headerlink" title="2. JSON的保留字符"></a>2. JSON的保留字符</h5><h5 id="3-PDF在网页上的显示"><a href="#3-PDF在网页上的显示" class="headerlink" title="3.PDF在网页上的显示"></a>3.PDF在网页上的显示</h5>]]></content>
     
     <summary type="html">
     
@@ -175,18 +175,15 @@
     <link href="https://jumper3.github.io/blog/2017/08/28/HTML%E8%AF%AD%E4%B9%89%E5%8C%96/"/>
     <id>https://jumper3.github.io/blog/2017/08/28/HTML语义化/</id>
     <published>2017-08-28T09:17:00.000Z</published>
-    <updated>2017-12-26T09:23:06.402Z</updated>
+    <updated>2018-01-02T02:46:43.122Z</updated>
     
-    <content type="html"><![CDATA[<p>###何为HTML语义化<br>语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器很好的解析。</p><p>###为什么要语义化？</p><ul><li>有利于SEO（搜索引擎优化），有助于爬虫抓取更多的有效信息，爬虫是依赖于标签来确定上下文和各个关键字的权重。</li><li>语义化的HTML在没有CSS的情况下也能呈现较好的内容结构与代码结构</li><li>方便其他设备的解析</li><li>便于团队开发和维护</li></ul><p>###应该注意什么？</p><ul><li>尽可能少的使用无语义的标签div和span；</li><li>在语义不明显时，既可以使用div或者p时，尽量用p, 因为p在默认情况下有上下间距，对兼容特殊终端有利；</li><li>不要使用纯样式标签，如：b、font、u等，改用css设置。</li><li>需要强调的文本，可以包含在strong或者em标签中（浏览器预设样式，能用CSS指定就不用他们），strong默认样式是加粗（不要用b），em是斜体（不用i）；</li><li>使用表格时，标题要用caption，表头用thead，主体部分用tbody包围，尾部用tfoot包围。表头和一般单元格要区分开，表头用th，单元格用td；</li><li>表单域要用fieldset标签包起来，并用legend标签说明表单的用途；</li><li>每个input标签对应的说明文本都需要使用label标签，并且通过为input设置id属性，在lable标签中设置for=someld来让说明文本和相对应的input关联起来。</li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="何为HTML语义化"><a href="#何为HTML语义化" class="headerlink" title="何为HTML语义化"></a>何为HTML语义化</h3><p>语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器很好的解析。</p><h3 id="为什么要语义化？"><a href="#为什么要语义化？" class="headerlink" title="为什么要语义化？"></a>为什么要语义化？</h3><ul><li>有利于SEO（搜索引擎优化），有助于爬虫抓取更多的有效信息，爬虫是依赖于标签来确定上下文和各个关键字的权重。</li><li>语义化的HTML在没有CSS的情况下也能呈现较好的内容结构与代码结构</li><li>方便其他设备的解析</li><li>便于团队开发和维护</li></ul><h3 id="应该注意什么？"><a href="#应该注意什么？" class="headerlink" title="应该注意什么？"></a>应该注意什么？</h3><ul><li>尽可能少的使用无语义的标签div和span；</li><li>在语义不明显时，既可以使用div或者p时，尽量用p, 因为p在默认情况下有上下间距，对兼容特殊终端有利；</li><li>不要使用纯样式标签，如：b、font、u等，改用css设置。</li><li>需要强调的文本，可以包含在strong或者em标签中（浏览器预设样式，能用CSS指定就不用他们），strong默认样式是加粗（不要用b），em是斜体（不用i）；</li><li>使用表格时，标题要用caption，表头用thead，主体部分用tbody包围，尾部用tfoot包围。表头和一般单元格要区分开，表头用th，单元格用td；</li><li>表单域要用fieldset标签包起来，并用legend标签说明表单的用途；</li><li>每个input标签对应的说明文本都需要使用label标签，并且通过为input设置id属性，在lable标签中设置for=someld来让说明文本和相对应的input关联起来。</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;###何为HTML语义化&lt;br&gt;语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅读和写出更优雅的代码的同时，让浏览器的爬虫和机器很好的解析。&lt;/p&gt;
-&lt;p&gt;###为什么要语义化？&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;有利于SEO（搜索引擎优化），有
+        &lt;h3 id=&quot;何为HTML语义化&quot;&gt;&lt;a href=&quot;#何为HTML语义化&quot; class=&quot;headerlink&quot; title=&quot;何为HTML语义化&quot;&gt;&lt;/a&gt;何为HTML语义化&lt;/h3&gt;&lt;p&gt;语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化），便于开发者阅
       
     
     </summary>
@@ -201,17 +198,16 @@
     <link href="https://jumper3.github.io/blog/2017/08/28/%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82/"/>
     <id>https://jumper3.github.io/blog/2017/08/28/形参和实参/</id>
     <published>2017-08-28T09:07:59.000Z</published>
-    <updated>2017-12-27T03:06:33.580Z</updated>
+    <updated>2018-01-02T02:46:10.942Z</updated>
     
-    <content type="html"><![CDATA[<p>###实参(argument)：</p><blockquote><p>全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都<strong>必须具有确定的值</strong>， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。      </p></blockquote><p>###形参(parameter)：</p><blockquote><p>全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参数,目的是用来<strong>接收调用该函数时传入的参数</strong>.在调用函数时，实参将赋值给形参。因而，必须注意实参的个数，类型应与形参一一对应，并且实参必须要有确定的值。</p></blockquote><p>###形参和实参的区别<br>形参出现在函数定义中，在整个函数体内都可以使用， 离开该函数则不能使用。 实参出现在主调函数中，进入被调函数后，实参变量也不能使用。 </p><p>形参和实参的功能是作数据传送。发生函数调用时， 主调函数把实参的值传送给被调函数的形参从而实现主调函数向被调函数的数据传送。</p><ol><li>形参变量只有在被调用时才分配内存单元，在调用结束时， 即刻释放所分配的内存单元。因此，形参只有在函数内部有效。 函数调用结束返回主调函数后则不能再使用该形参变量。 </li><li>实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。 </li><li>实参和形参在数量上，类型上，顺序上应严格一致， 否则会发生“类型不匹配”的错误。 </li><li>函数调用中发生的数据传送是单向的。 即只能把实参的值传送给形参，而不能把形参的值反向地传送给实参。 因此在函数调用过程中，形参的值发生改变，而实参中的值不会变化。</li><li>当形参和实参不是指针类型时，在该函数运行时，形参和实参是不同的变量，他们在内存中位于不同的位置，形参将实参的内容复制一份，在该函数运行结束的时候形参被释放，而实参内容不会改变。</li></ol><p>而如果函数的参数是指针类型变量,在调用该函数的过程中，传给函数的是实参的地址，在函数体内部使用的也是实参的地址，即使用的就是实参本身。所以在函数体内部可以改变实参的值。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="实参-argument-："><a href="#实参-argument-：" class="headerlink" title="实参(argument)："></a>实参(argument)：</h3><blockquote><p>全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都<strong>必须具有确定的值</strong>， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。      </p></blockquote><h3 id="形参-parameter-："><a href="#形参-parameter-：" class="headerlink" title="形参(parameter)："></a>形参(parameter)：</h3><blockquote><p>全称为”形式参数” 由于它不是实际存在变量，所以又称虚拟变量。是在定义函数名和函数体的时候使用的参数,目的是用来<strong>接收调用该函数时传入的参数</strong>.在调用函数时，实参将赋值给形参。因而，必须注意实参的个数，类型应与形参一一对应，并且实参必须要有确定的值。</p></blockquote><h3 id="形参和实参的区别"><a href="#形参和实参的区别" class="headerlink" title="形参和实参的区别"></a>形参和实参的区别</h3><p>形参出现在函数定义中，在整个函数体内都可以使用， 离开该函数则不能使用。 实参出现在主调函数中，进入被调函数后，实参变量也不能使用。 </p><p>形参和实参的功能是作数据传送。发生函数调用时， 主调函数把实参的值传送给被调函数的形参从而实现主调函数向被调函数的数据传送。</p><ol><li>形参变量只有在被调用时才分配内存单元，在调用结束时， 即刻释放所分配的内存单元。因此，形参只有在函数内部有效。 函数调用结束返回主调函数后则不能再使用该形参变量。 </li><li>实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。 因此应预先用赋值，输入等办法使实参获得确定值。 </li><li>实参和形参在数量上，类型上，顺序上应严格一致， 否则会发生“类型不匹配”的错误。 </li><li>函数调用中发生的数据传送是单向的。 即只能把实参的值传送给形参，而不能把形参的值反向地传送给实参。 因此在函数调用过程中，形参的值发生改变，而实参中的值不会变化。</li><li>当形参和实参不是指针类型时，在该函数运行时，形参和实参是不同的变量，他们在内存中位于不同的位置，形参将实参的内容复制一份，在该函数运行结束的时候形参被释放，而实参内容不会改变。</li></ol><p>而如果函数的参数是指针类型变量,在调用该函数的过程中，传给函数的是实参的地址，在函数体内部使用的也是实参的地址，即使用的就是实参本身。所以在函数体内部可以改变实参的值。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;###实参(argument)：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;全称为”实际参数”是在调用时传递给函数的参数. 实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都&lt;strong&gt;必须具有确定的值&lt;/strong&gt;， 以便把这些
+        &lt;h3 id=&quot;实参-argument-：&quot;&gt;&lt;a href=&quot;#实参-argument-：&quot; class=&quot;headerlink&quot; title=&quot;实参(argument)：&quot;&gt;&lt;/a&gt;实参(argument)：&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;全称为”实际参数”是在调用
       
     
     </summary>
