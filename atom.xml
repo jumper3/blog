@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://jumper3.github.io/blog/"/>
-  <updated>2018-01-04T07:27:29.583Z</updated>
+  <updated>2018-01-06T09:26:29.562Z</updated>
   <id>https://jumper3.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>let和const| ES6学习</title>
+    <link href="https://jumper3.github.io/blog/2018/01/06/let%E5%92%8Cconst%7C%20ES6%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://jumper3.github.io/blog/2018/01/06/let和const| ES6学习/</id>
+    <published>2018-01-06T09:25:00.000Z</published>
+    <updated>2018-01-06T09:26:29.562Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="var-const-let的区别"><a href="#var-const-let的区别" class="headerlink" title="var const let的区别"></a>var const let的区别</h4><table><thead><tr><th></th><th>var</th><th>let</th><th>const</th></tr></thead><tbody><tr><td><strong>作用域</strong></td><td>函数级</td><td>块级</td><td>块级</td></tr><tr><td><strong>可否重声明</strong></td><td>可以</td><td>不能</td><td>不能</td></tr><tr><td><strong>可否重赋值</strong></td><td>可以</td><td>可以</td><td>不能</td></tr><tr><td><strong>在全局中声明</strong></td><td>覆盖全局属性</td><td>遮蔽全局属性</td><td>遮蔽全局属性</td></tr></tbody></table><h4 id="如何使用let和const"><a href="#如何使用let和const" class="headerlink" title="如何使用let和const?"></a>如何使用let和const?</h4><blockquote><p> 默认使用const，只有在需要改变变量时才用let</p></blockquote><p>因为大部分变量的值在初始化后不改变</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;var-const-let的区别&quot;&gt;&lt;a href=&quot;#var-const-let的区别&quot; class=&quot;headerlink&quot; title=&quot;var const let的区别&quot;&gt;&lt;/a&gt;var const let的区别&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://jumper3.github.io/blog/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>阅读者前端项目文档</title>
