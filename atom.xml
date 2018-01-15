@@ -6,7 +6,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://jumper3.github.io/blog/"/>
-  <updated>2018-01-06T09:26:29.562Z</updated>
+  <updated>2018-01-15T07:57:26.018Z</updated>
   <id>https://jumper3.github.io/blog/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ES6模块化| ES6学习</title>
+    <link href="https://jumper3.github.io/blog/2018/01/15/ES6%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    <id>https://jumper3.github.io/blog/2018/01/15/ES6模块化/</id>
+    <published>2018-01-15T08:05:00.000Z</published>
+    <updated>2018-01-15T07:57:26.018Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="模块的定义"><a href="#模块的定义" class="headerlink" title="模块的定义"></a>模块的定义</h4><blockquote><p>模块是自动运行在严格模式下且没有办法退出运行的JS代码</p><p>模块与普通JS代码的区别在于<strong>可定义导入导出绑定</strong></p></blockquote><h4 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导出数据</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> color = <span class="string">"red"</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> name = <span class="string">"Nicholas"</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> magicNumber = <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> num1 + num1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出类</span></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line"><span class="keyword">constructor</span> (length, width) &#123;</span><br><span class="line"><span class="keyword">this</span>.Length = length</span><br><span class="line"><span class="keyword">this</span>.Width = width</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 未导出则为模块私有</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">subtract</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> num1 - num2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个函数。...</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiply</span> (<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> num1 * num2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出引用</span></span><br><span class="line"><span class="keyword">export</span> &#123; multiply &#125;</span><br></pre></td></tr></table></figure><h4 id="基本导入"><a href="#基本导入" class="headerlink" title="基本导入"></a>基本导入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; a, b &#125; <span class="keyword">from</span> <span class="string">'example.js'</span></span><br></pre></td></tr></table></figure><h4 id="整体导入"><a href="#整体导入" class="headerlink" title="整体导入"></a>整体导入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> example <span class="keyword">from</span> <span class="string">'example.js'</span></span><br></pre></td></tr></table></figure><h4 id="默认导入"><a href="#默认导入" class="headerlink" title="默认导入"></a>默认导入</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sum <span class="keyword">from</span> <span class="string">'example.js'</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;模块的定义&quot;&gt;&lt;a href=&quot;#模块的定义&quot; class=&quot;headerlink&quot; title=&quot;模块的定义&quot;&gt;&lt;/a&gt;模块的定义&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;模块是自动运行在严格模式下且没有办法退出运行的JS代码&lt;/p&gt;
+&lt;p&gt;模块与普通JS代码的
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://jumper3.github.io/blog/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>let和const| ES6学习</title>
