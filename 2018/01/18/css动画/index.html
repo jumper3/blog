@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="冷吃兔">
 <meta property="og:description" content="从Animated.css的源码里能学到什么呢？ 123456.animated &amp;#123;  -webkit-animation-duration: .8s;  animation-duration: .8s;  -webkit-animation-fill-mode: both;  animation-fill-mode: both;&amp;#125; animation-duration： 动画">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-18T08:14:38.092Z">
+<meta property="og:updated_time" content="2018-01-20T08:41:12.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 动画 | MDN照搬委员会">
 <meta name="twitter:description" content="从Animated.css的源码里能学到什么呢？ 123456.animated &amp;#123;  -webkit-animation-duration: .8s;  animation-duration: .8s;  -webkit-animation-fill-mode: both;  animation-fill-mode: both;&amp;#125; animation-duration： 动画">
@@ -132,7 +132,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -171,7 +171,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关键帧"><span class="post-toc-number">1.</span> <span class="post-toc-text">关键帧</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#transform"><span class="post-toc-number">2.</span> <span class="post-toc-text">transform</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关键帧"><span class="post-toc-number">1.</span> <span class="post-toc-text">关键帧</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#transform"><span class="post-toc-number">2.</span> <span class="post-toc-text">transform</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动画效果叠加"><span class="post-toc-number">3.</span> <span class="post-toc-text">动画效果叠加</span></a></li></ol>
         </nav>
     </aside>
     
@@ -227,6 +227,7 @@
 </tr>
 <tr>
 <td>matrix3d(<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>,<em>n</em>）</td>
+<td></td>
 </tr>
 <tr>
 <td>translate(<em>x</em>,<em>y</em>)</td>
@@ -307,14 +308,16 @@
 </tbody>
 </table>
 <p>可以查看w3c中的例子：<a href="http://www.w3school.com.cn/cssref/pr_transform.asp" target="_blank" rel="noopener">transform</a></p>
-
+<h4 id="动画效果叠加"><a href="#动画效果叠加" class="headerlink" title="动画效果叠加"></a>动画效果叠加</h4><p>更让人激动的是什么呢？</p>
+<p>我们可以吧多个transform的值应用在一个transform上，就像这样</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> triangleRotate &#123;</span><br><span class="line">  100% &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(90deg) <span class="built_in">translateX</span>(.3rem); </span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(90deg) <span class="built_in">translateX</span>(.3rem); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-01-18T08:14:38.092Z" itemprop="dateUpdated">2018-01-18 16:14:38</time>
+    最後更新時間：<time datetime="2018-01-20T08:41:12.251Z" itemprop="dateUpdated">2018-01-20 16:41:12</time>
 </span><br>
 
 
