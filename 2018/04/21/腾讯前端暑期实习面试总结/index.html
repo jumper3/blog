@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>腾讯前端暑期实习面试总结 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="前端">
+    <meta name="description" content="至今已过去一周，还没有收到消息。所以应该是挂在了HR面上。但接连几日面试还是让我学到了不少，因此做个总结，也算是一种提高  1. 一面（技术面）4月11日本轮面试主要是对技术的考察，问题如下  css的水平垂直居中 对闭包的理解 this的用法 对css模块化的了解 vue组件间的通信 vue的生命周期 小程序页面传参 小程序开发遇到的坑 跨域问题的了解（从Ajax到CORS） 在开发中遇到过什">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="腾讯前端暑期实习面试总结">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="至今已过去一周，还没有收到消息。所以应该是挂在了HR面上。但接连几日面试还是让我学到了不少，因此做个总结，也算是一种提高  1. 一面（技术面）4月11日本轮面试主要是对技术的考察，问题如下  css的水平垂直居中 对闭包的理解 this的用法 对css模块化的了解 vue组件间的通信 vue的生命周期 小程序页面传参 小程序开发遇到的坑 跨域问题的了解（从Ajax到CORS） 在开发中遇到过什">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-01T08:47:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="腾讯前端暑期实习面试总结">
+<meta name="twitter:description" content="至今已过去一周，还没有收到消息。所以应该是挂在了HR面上。但接连几日面试还是让我学到了不少，因此做个总结，也算是一种提高  1. 一面（技术面）4月11日本轮面试主要是对技术的考察，问题如下  css的水平垂直居中 对闭包的理解 this的用法 对css模块化的了解 vue组件间的通信 vue的生命周期 小程序页面传参 小程序开发遇到的坑 跨域问题的了解（从Ajax到CORS） 在开发中遇到过什">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">腾讯前端暑期实习面试总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">腾讯前端暑期实习面试总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-21T08:41:00.000Z" itemprop="datePublished" class="page-time">
+  2018-04-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-一面（技术面）4月11日"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 一面（技术面）4月11日</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-二面（总监面）4月12日"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 二面（总监面）4月12日</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-三面（HR面）4月13日"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 三面（HR面）4月13日</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#心得体会"><span class="post-toc-number">4.</span> <span class="post-toc-text">心得体会</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#应该继续提高的方面"><span class="post-toc-number">5.</span> <span class="post-toc-text">应该继续提高的方面</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-腾讯前端暑期实习面试总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">腾讯前端暑期实习面试总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-21 16:41:00" datetime="2018-04-21T08:41:00.000Z"  itemprop="datePublished">2018-04-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>至今已过去一周，还没有收到消息。所以应该是挂在了HR面上。但接连几日面试还是让我学到了不少，因此做个总结，也算是一种提高</p>
+</blockquote>
+<h4 id="1-一面（技术面）4月11日"><a href="#1-一面（技术面）4月11日" class="headerlink" title="1. 一面（技术面）4月11日"></a>1. 一面（技术面）4月11日</h4><p>本轮面试主要是对技术的考察，问题如下</p>
+<ol>
+<li>css的水平垂直居中</li>
+<li>对闭包的理解</li>
+<li>this的用法</li>
+<li>对css模块化的了解</li>
+<li>vue组件间的通信</li>
+<li>vue的生命周期</li>
+<li>小程序页面传参</li>
+<li>小程序开发遇到的坑</li>
+<li>跨域问题的了解（从Ajax到CORS）</li>
+<li>在开发中遇到过什么具体的困难（以JSON解析为例）</li>
+<li>开放性问题:如何在坐标系上计算正方形重叠面积</li>
+<li>开放性问题：计算从0-4000K中出现过几次1</li>
+</ol>
+<h4 id="2-二面（总监面）4月12日"><a href="#2-二面（总监面）4月12日" class="headerlink" title="2. 二面（总监面）4月12日"></a>2. 二面（总监面）4月12日</h4><p>本轮面试主要是考察在团队中的工作能力，问题如下</p>
+<ol>
+<li>说说你的优缺点</li>
+<li>三个字概括你自己</li>
+<li>抗压能力如何</li>
+<li>对加班怎么看</li>
+<li>人生中最成功和最失败的地方</li>
+<li>对HTTP通信协议的理解</li>
+<li>举例说明你那些方面比别人强</li>
+<li>家庭情况</li>
+</ol>
+<h4 id="3-三面（HR面）4月13日"><a href="#3-三面（HR面）4月13日" class="headerlink" title="3. 三面（HR面）4月13日"></a>3. 三面（HR面）4月13日</h4><ol>
+<li>女朋友的情况</li>
+<li>女朋友评价你的优缺点</li>
+<li>抗压能力如何</li>
+<li>对于在外地实习如何看待</li>
+</ol>
+<h4 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h4><p>技术始终是核心，但腾讯的关注点除了技术之外还有</p>
+<ol>
+<li>动手能力（由项目体现）</li>
+<li>学习能力（问在多长时间内熟悉并上手一样新技术）</li>
+<li>思维能力（一面的发散性思维问题）</li>
+</ol>
+<h4 id="应该继续提高的方面"><a href="#应该继续提高的方面" class="headerlink" title="应该继续提高的方面"></a>应该继续提高的方面</h4><ol>
+<li>对基础知识理解的准确性、系统性</li>
+<li>算法数据结构的学习</li>
+<li>应当注意面试时的逻辑性，善于总结，而不是让面试官来总结你</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/前端/">前端</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/&title=《腾讯前端暑期实习面试总结》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/&title=《腾讯前端暑期实习面试总结》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《腾讯前端暑期实习面试总结》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/04/06/npm基础/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">npm基础</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/&title=《腾讯前端暑期实习面试总结》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/&title=《腾讯前端暑期实习面试总结》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《腾讯前端暑期实习面试总结》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/04/21/腾讯前端暑期实习面试总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQY7bMAwF0Ln/pdttgdTJ/6RUpMDzamA4Fp8XEofkz098/frjer3/+szT9fS21zcnqx+78PDw8BahJwE9hZX8/fRp3t9J4nn8BHh4eHjXeO+XT0JJQny/e88+5Yeo8PDw8L6A1waaMNqEHg8PD+//4iXBtWWLvLSBh4eH9z28zetyfHI//9yHay14eHh4MS/vIn3P31f6e3h4eHjrrnp+SGy28rz1VUeLh4eHd4GXb7iz5n3+q3ytNk48PDy827x23KpduGUkyA938PDw8I7y8hA3TxbNqjgpj96Ah4eHd4GXDwG07aW2eNEWJvLf4uHh4d3gtQENy6nlim2Cfux74+Hh4S0S1vxgaEsV+aBAXp74yzN4eHh4F3j5Br1pSuUDAZtjIBodwMPDw1vz8ubWrCzbNs/yJllUTMHDw8O7wMu34FkB90YBoj1U8PDw8G7w2sJBfjycfWaYguPh4eEd5bUN/jyBbsOdbf3RTAQeHh7eUd6pFDlvUCXl4Lwtd3hiAg8PD6/kJUu2i+238pbxoWKNh4eHt+a1w0w3tvt2JCtfEQ8PD+8Gry0l7IsFs+GAWYR4eHh4N3h5iBt2DpsVRx5XwcPDw/snvFka3aa5+W9XqTweHh7eBV5bMJ2NGuQFhbyI3DbM8PDw8M7y8k25HQ6YNczacnCUg+Ph4eFd4LXbfZL4tmNbeYG4GCzAw8PDu8zbtK/aJla9xc9KvXh4eHhHeaeKs/mdHFk0uvLRATw8PLw1r91q2+0+T7WTssW+oIyHh4d3ijdr5Odhbcq1yXHyAYyHh4d3jdcODeybZDmsqKzg4eHhfT1vOOFVZvqzVBsPDw/vm3ntMEGbpucfdzhfgIeHhzfitYlv25RKihSnysF4eHh4t3mzf/hnW//sUMlbcbspLTw8PLyPvN/byDXKykTUOQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
