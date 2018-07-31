@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>再谈排序 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="算法">
+    <meta name="description" content="虽然我们有了Array.prototype.sort()，但是要知其所以然。 Sedgewick在《算法中提到了》学习排序算法的意义：   对排序算法的分析有助于全面理解算法性能的不计较 类似的技术也能有效解决其他类型的问题 排序算法往往是解决其他问题的第一步   辅助工具为了方便算法的比较与测试，封装常用方法至utils.js 123456789101112131415161718module.">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="再谈排序">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/07/26/再谈排序/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="虽然我们有了Array.prototype.sort()，但是要知其所以然。 Sedgewick在《算法中提到了》学习排序算法的意义：   对排序算法的分析有助于全面理解算法性能的不计较 类似的技术也能有效解决其他类型的问题 排序算法往往是解决其他问题的第一步   辅助工具为了方便算法的比较与测试，封装常用方法至utils.js 123456789101112131415161718module.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2016/11/29/33d105e7e7e9c60221c445f5684ccfb6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2018-07-31T04:34:23.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="再谈排序">
+<meta name="twitter:description" content="虽然我们有了Array.prototype.sort()，但是要知其所以然。 Sedgewick在《算法中提到了》学习排序算法的意义：   对排序算法的分析有助于全面理解算法性能的不计较 类似的技术也能有效解决其他类型的问题 排序算法往往是解决其他问题的第一步   辅助工具为了方便算法的比较与测试，封装常用方法至utils.js 123456789101112131415161718module.">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2016/11/29/33d105e7e7e9c60221c445f5684ccfb6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">再谈排序</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">再谈排序</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-26T08:53:59.000Z" itemprop="datePublished" class="page-time">
+  2018-07-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#辅助工具"><span class="post-toc-number">1.</span> <span class="post-toc-text">辅助工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择排序"><span class="post-toc-number">2.</span> <span class="post-toc-text">选择排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#插入排序"><span class="post-toc-number">3.</span> <span class="post-toc-text">插入排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#希尔排序"><span class="post-toc-number">4.</span> <span class="post-toc-text">希尔排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#归并排序"><span class="post-toc-number">5.</span> <span class="post-toc-text">归并排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#快速排序"><span class="post-toc-number">6.</span> <span class="post-toc-text">快速排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#各种排序算法的比较"><span class="post-toc-number">7.</span> <span class="post-toc-text">各种排序算法的比较</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-再谈排序"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">再谈排序</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-26 16:53:59" datetime="2018-07-26T08:53:59.000Z"  itemprop="datePublished">2018-07-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>虽然我们有了<code>Array.prototype.sort()</code>，但是要知其所以然。</p>
+<p>Sedgewick在《算法中提到了》学习排序算法的意义：</p>
+<blockquote>
+<ul>
+<li>对排序算法的分析有助于全面理解算法性能的不计较</li>
+<li>类似的技术也能有效解决其他类型的问题</li>
+<li>排序算法往往是解决其他问题的第一步</li>
+</ul>
+</blockquote>
+<h3 id="辅助工具"><a href="#辅助工具" class="headerlink" title="辅助工具"></a>辅助工具</h3><p>为了方便算法的比较与测试，封装常用方法至utils.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">//生成长度为size，最大值为max的正整数列</span></span><br><span class="line">    makeNum(size, max) &#123;</span><br><span class="line">        <span class="keyword">let</span> out = []</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> n = <span class="number">1</span> + <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * max)</span><br><span class="line">            out.push(n)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`生成的数组为：<span class="subst">$&#123;out&#125;</span>`</span>)</span><br><span class="line">        <span class="keyword">return</span> out</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//交换数组中两数位置</span></span><br><span class="line">    exchange(arr, pos1, pos2) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = arr[pos1]</span><br><span class="line">        arr[pos1] = arr[pos2]</span><br><span class="line">        arr[pos2] = temp</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Q&amp;A:为什么要引入交换（exchange）？</li>
+</ul>
+<p>如果可以，尽可能在原数组上交换，而不是开辟新的数组，以减少内存耗费</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的核心思想是极简的，即外循环从头逐位向后推进中，内循环从外循环头部之后找到一个<strong>最小的元素</strong>跟头部元素交换，如此进行下去。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = arr.length,</span><br><span class="line">        times = <span class="number">0</span></span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'选择排序'</span>)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> min = i</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[min]) &#123;</span><br><span class="line">                exchage(arr, j, min)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'选择排序'</span>)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的思想类似于打扑克牌，从头开始，异次挑外循环元素进内循环中对比，直到该元素在内循环中插入到合适的位置。对比过程中该元素可能不断向左。插入排序常数性快与选择排序。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = arr.length,</span><br><span class="line">        times = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; arr[j] &lt; arr[j - <span class="number">1</span>]; j--) &#123;</span><br><span class="line">            utils.exchage(arr, j, j - <span class="number">1</span>)</span><br><span class="line">            times++</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`第<span class="subst">$&#123;times&#125;</span>次修改，数组为<span class="subst">$&#123;arr&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序是插入排序的带间隔翻版，核心思想是以固定间隔分隔数组，在分隔出的子数组中应用插入排序。一轮之后，再缩小间隔继续排序，直到间隔为1。</p>
+<p>经本人测试，希尔排序在随机自然数列的排序中快过<code>Array.prototype.sort()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = arr.length,</span><br><span class="line">        gap = <span class="number">1</span></span><br><span class="line">    <span class="built_in">console</span>.time(<span class="string">'希尔排序'</span>)</span><br><span class="line">    <span class="comment">//根据数组长度动态生成一个适合的间距</span></span><br><span class="line">    <span class="keyword">while</span> (gap &lt; len / <span class="number">3</span>) &#123;</span><br><span class="line">        gap = gap * <span class="number">3</span> + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (gap &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = gap; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = i; j &gt;= gap &amp;&amp; arr[j] &lt; arr[j - gap]; j -= gap) &#123;</span><br><span class="line">                utils.exchange(arr, j, j - gap)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        gap = <span class="built_in">Math</span>.floor(gap / <span class="number">3</span>) <span class="comment">//在一次长度为gap的插入排序完调整gap</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.timeEnd(<span class="string">'希尔排序'</span>)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序在牺牲了一定内存（使用了辅助数列）的情况下，实现了时间复杂度为(NlgN)，是一种稳健的排序方法。其核心是使用<strong>分治</strong>的思想，递归地将大问题化小，用小问题的答案解决大问题。而归并排序另外一个问题在于引入了递归，会受到常规语言的调用栈限制（如chrome67，V8引擎:约13000次）。</p>
+<p>下面先给出实现，为了理解其分治的过程，打印过程以便观察</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`slice:[<span class="subst">$&#123;arr&#125;</span>]`</span>)</span><br><span class="line">    <span class="keyword">let</span> len = arr.length</span><br><span class="line">    <span class="keyword">if</span> (len &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor(len / <span class="number">2</span>),</span><br><span class="line">        left = arr.slice(<span class="number">0</span>, mid),</span><br><span class="line">        right = arr.slice(mid)</span><br><span class="line">    <span class="keyword">return</span> sort(mergeSort(left), mergeSort(right)) <span class="comment">//子数组继续递归拆分,然后再合并</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">left, right</span>) </span>&#123; <span class="comment">//合并两个子数组</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`sortLeft:[<span class="subst">$&#123;left&#125;</span>],sortRight:[<span class="subst">$&#123;right&#125;</span>]`</span>)</span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">while</span> (left.length &amp;&amp; right.length) &#123; <span class="comment">//当左右栈还未用尽时，继续排序</span></span><br><span class="line">        <span class="keyword">let</span> item = (left[<span class="number">0</span>] &lt;= right[<span class="number">0</span>]) ? left.shift() : right.shift() <span class="comment">//排序的核心步骤，为保证稳定，判断条件为&lt;=</span></span><br><span class="line">        result.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result.concat(left.length ? left : right)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = utils.makeNum(<span class="number">5</span>, <span class="number">100</span>)</span><br><span class="line"><span class="built_in">console</span>.log(mergeSort(a))</span><br></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; node merge.js</span><br><span class="line">生成的数组为：9,21,65,77,55</span><br><span class="line">slice:[9,21,65,77,55]</span><br><span class="line">slice:[9,21]</span><br><span class="line">slice:[9]</span><br><span class="line">slice:[21]</span><br><span class="line">sortLeft:[9],sortRight:[21]</span><br><span class="line">slice:[65,77,55]</span><br><span class="line">slice:[65]</span><br><span class="line">slice:[77,55]</span><br><span class="line">slice:[77]</span><br><span class="line">slice:[55]</span><br><span class="line">sortLeft:[77],sortRight:[55]</span><br><span class="line">sortLeft:[65],sortRight:[55,77]</span><br><span class="line">sortLeft:[9,21],sortRight:[55,65,77]</span><br><span class="line">[ 9, 21, 55, 65, 77 ]</span><br></pre></td></tr></table></figure>
+<p>可以看到，开始算法先对数组切分，产生一个以原数组为根的树形结构，树枝粒度为1。以深度优先的方式触底，返回后进入Sort环节进行排序操作，得到有序的大数组，最后汇聚成有序的数组。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2016/11/29/33d105e7e7e9c60221c445f5684ccfb6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="归并排序"></p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序应该是当今使用最广泛的一种排序。顾名思义，其效率高，且占用内存少。其内循环小于绝大多数算法。类似于归并排序，其核心思想依然为<strong>分治</strong>。简要的说就是选数组中任意一点进行<strong>分割(partition)</strong>，然后将大于该点值得元素放置于元素左边，小于的放于右边。</p>
+<ul>
+<li>归并排序：递归调用发生在处理整个数组之前</li>
+<li>快速排序：递归调用发生在处理整个数组之后</li>
+</ul>
+<p>快速排序的代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick</span>(<span class="params">arr, lo, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lo = <span class="keyword">typeof</span> lo === <span class="string">'number'</span> ? lo : <span class="number">0</span>,</span><br><span class="line">        hi = <span class="keyword">typeof</span> hi === <span class="string">'number'</span> ? hi : arr.length <span class="number">-1</span>,</span><br><span class="line">        index</span><br><span class="line">    <span class="keyword">if</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="comment">//先分割，再递归调用</span></span><br><span class="line">        index = partition(arr, lo, hi)</span><br><span class="line">        quick(arr, lo, index - <span class="number">1</span>)</span><br><span class="line">        quick(arr, index + <span class="number">1</span>, hi)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//以arr[lo]为默认分割点，在比较过程中，分割点绝对位置不变</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">arr, lo, hi</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//pivot为当前分隔游标，随着符合判断条件不断前进</span></span><br><span class="line">    <span class="keyword">var</span> pivot = lo</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = lo + <span class="number">1</span>; i &lt;= hi; i++) &#123;</span><br><span class="line">        <span class="comment">//如果有小于比较点的元素，交换至左边</span></span><br><span class="line">        arr[i] &lt; arr[lo] &amp;&amp; utils.exchange(arr, i, ++pivot)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最后，将分割点[lo]移至正确位置</span></span><br><span class="line">    utils.exchange(arr, pivot, lo)</span><br><span class="line">    <span class="keyword">return</span> pivot</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="各种排序算法的比较"><a href="#各种排序算法的比较" class="headerlink" title="各种排序算法的比较"></a>各种排序算法的比较</h3><p>在熟知各种算法的优缺点后，我们可以根据实际问题的需要选择最合适的排序算法。其中考量点包括问题规模，数组有序程度以及空间限制等等。</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>时间复杂度</th>
+<th>最好</th>
+<th>最坏</th>
+<th>空间复杂度</th>
+<th>稳定性*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>1</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>冒泡</td>
+<td>O(n^2)</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>1</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>插入</td>
+<td>O(n^2)</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>1</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>希尔</td>
+<td>不确定</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>1</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>归并</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>N</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>快速</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(n^2)</td>
+<td>lg<em>N</em></td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>堆</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>1</td>
+<td>不稳定</td>
+</tr>
+</tbody>
+</table>
+<p>*注：稳定性指在排序完成后，值相等的两个元素会不会改变相对位置，若改变则为不稳定。反之稳定。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/算法/">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/07/26/再谈排序/&title=《再谈排序》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/07/26/再谈排序/&title=《再谈排序》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/07/26/再谈排序/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《再谈排序》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/07/26/再谈排序/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/07/26/再谈排序/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/07/07/Java和JS的区别/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Java和JS的区别</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/07/26/再谈排序/&title=《再谈排序》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/07/26/再谈排序/&title=《再谈排序》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/07/26/再谈排序/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《再谈排序》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/07/26/再谈排序/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/07/26/再谈排序/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aS46EMAxFUfa/aXrc6oK6z4aW4lxGpQIlHAaWPzkOfJ0XF7l7v+bVLscblwwZMpZlnLfX1TN/X4W8xNXd9AN9WEeGDBkbMO63rG3P1+ysI0OGDBnp9iRw137LkCFDRhpwyT/kSU6VIUOGjDRQEiQpaDnysVpchgwZCzJ41/3/f78y35AhQ8ZSjDO8eHjlr1griX/tKEOGjNEMHuDu0zLS4u8PA76klTJkyBjNqA0mO0cu0tL3sYNiMmTIWJZRa/qT5hcPr53DGTJkyJjNIIuSu7zETRv95DiaDBkyZjPSUWIHQ2A8BMuQIWM3Rm0+WDuEwSvQuLkmQ4aMLRnpcJEkc+lIgPBkyJCxA4MnarUjF2nzjo8oZMiQsRuj9kLPhmweuD/clSFDxmgGL1l5G65Wvj52ZkSGDBnjGE+1yQiYpJ78832Zb8iQIWMQgy9HSs3aammwvnxGhgwZoxlplsU3S9chYTcuZWXIkLE4Iz3y1Uko+y021DWUIUPGaAYvUNMBQDqw5P/LkCFjH0baGuMb3GejteAe5KEyZMgYx3ij0d8pg4NkVIYMGUMZZ3ilvLSgTT8EmmnIkCFjcUbnuFiauqFCFBw7Sz+WDBkyZjA6QTYlpc244HvLkCFjA0Y6GCAvmv7TeVsZMmTIIClaLUzzzyFDhgwZtYCbBuJaJU2acTJkyNiBQUJnmtLxcjRNH2XIkLEboxby+qkhST15kipDhoyhjB/S4yLgVc+UBgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
