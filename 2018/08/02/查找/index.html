@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>查找 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="算法">
+    <meta name="description" content="高效的检索和访问海量信息是处理它们的重要前提。查找应运而生。 下面将介绍几种经典的数据类型与查找算法，包括：  二分查找 二叉查找树 平衡二叉树（红黑树） 散列表  二分查找二分查找基于有序数组，核心思想是通过不断判断目标值所在区间而确定目标值位置的方法，核心在于不断修改中间值。其迭代的实现如下： 1234567891011function binarySearch(arr, key)&amp;#123;">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查找">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/08/02/查找/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="高效的检索和访问海量信息是处理它们的重要前提。查找应运而生。 下面将介绍几种经典的数据类型与查找算法，包括：  二分查找 二叉查找树 平衡二叉树（红黑树） 散列表  二分查找二分查找基于有序数组，核心思想是通过不断判断目标值所在区间而确定目标值位置的方法，核心在于不断修改中间值。其迭代的实现如下： 1234567891011function binarySearch(arr, key)&amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/300px-Binary_search_tree.svg.png">
+<meta property="og:image" content="http://www.echojb.com/img/2016/10/26/820353-20161024193906765-485385814.png">
+<meta property="og:image" content="https://algs4.cs.princeton.edu/33balanced/images/23tree-random.png">
+<meta property="og:image" content="https://algs4.cs.princeton.edu/33balanced/images/redblack-construction.png">
+<meta property="og:image" content="https://algs4.cs.princeton.edu/34hash/images/hashing-crux.png">
+<meta property="og:image" content="http://www.leevii.com/wp-content/uploads/2018/06/560844754-58b8dc2cc8ee5_articlex.png">
+<meta property="og:image" content="https://algs4.cs.princeton.edu/34hash/images/linear-probing.png">
+<meta property="og:updated_time" content="2018-08-03T12:58:49.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="查找">
+<meta name="twitter:description" content="高效的检索和访问海量信息是处理它们的重要前提。查找应运而生。 下面将介绍几种经典的数据类型与查找算法，包括：  二分查找 二叉查找树 平衡二叉树（红黑树） 散列表  二分查找二分查找基于有序数组，核心思想是通过不断判断目标值所在区间而确定目标值位置的方法，核心在于不断修改中间值。其迭代的实现如下： 1234567891011function binarySearch(arr, key)&amp;#123;">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/300px-Binary_search_tree.svg.png">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">查找</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">查找</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-02T12:53:00.000Z" itemprop="datePublished" class="page-time">
+  2018-08-02
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二分查找"><span class="post-toc-number">1.</span> <span class="post-toc-text">二分查找</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二叉查找树"><span class="post-toc-number">2.</span> <span class="post-toc-text">二叉查找树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二叉查找树存在的问题"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二叉查找树存在的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#平衡二叉树"><span class="post-toc-number">3.</span> <span class="post-toc-text">平衡二叉树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#红黑树"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">红黑树</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#散列表"><span class="post-toc-number">4.</span> <span class="post-toc-text">散列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#拉链法（分离链接法）"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">拉链法（分离链接法）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#线性探测法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">线性探测法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#各数据结构性能及优缺点比较"><span class="post-toc-number">5.</span> <span class="post-toc-text">各数据结构性能及优缺点比较</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-查找"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">查找</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-02 20:53:00" datetime="2018-08-02T12:53:00.000Z"  itemprop="datePublished">2018-08-02</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>高效的检索和访问海量信息是处理它们的重要前提。查找应运而生。</p>
+<p>下面将介绍几种经典的数据类型与查找算法，包括：</p>
+<ul>
+<li>二分查找</li>
+<li>二叉查找树</li>
+<li>平衡二叉树（红黑树）</li>
+<li>散列表</li>
+</ul>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>二分查找基于有序数组，核心思想是<strong>通过不断判断目标值所在区间而确定目标值位置的方法</strong>，核心在于不断修改中间值。其迭代的实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">arr, key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lo = <span class="number">0</span>,</span><br><span class="line">        hi = arr.length<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span>(lo &lt;= hi)&#123;</span><br><span class="line">        <span class="keyword">var</span> mid = <span class="built_in">Math</span>.floor(lo + (hi-lo)/<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> (arr[mid] === key) <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; key) hi = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &lt; key) lo = mid + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其递归的实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">arr, key, lo, hi</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt; lo) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">var</span> lo = lo || <span class="number">0</span>,</span><br><span class="line">        hi = hi || arr.length- <span class="number">1</span> ,</span><br><span class="line">        mid = <span class="built_in">Math</span>.floor(lo + (hi-lo)/<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">if</span> (arr[mid] === key) <span class="keyword">return</span> mid</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; key) <span class="keyword">return</span> binarySearch(arr, key, lo, mid - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &lt; key) <span class="keyword">return</span> binarySearch(arr, key, mid + <span class="number">1</span>, hi)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在数组有序的情况下，二分查找可以很快的实现查找，平均情况下查找次数需要lg<em>N</em>次。平均插入成本为N，最坏插入成本为2N。</p>
+<h3 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/300px-Binary_search_tree.svg.png" alt="img"></p>
+<p>二叉查找树（binary search tree）由<strong>结点</strong>组成，结点包含了<strong>链接</strong>，链接可以为空或指向其子节点。子节点分为<strong>左子节点</strong>和<strong>右子节点</strong>。</p>
+<p>在二叉查找树中，每个结点还包含一个<strong>键</strong>和一个<strong>值</strong>，键之间有序，以支持高效的查找。</p>
+<p>二叉查找树具有以下重要的性质：</p>
+<ol>
+<li>若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值；</li>
+<li>若任意节点的右子树不空，则右子树上所有节点的值均大于它的根节点的值；</li>
+<li>任意节点的左、右子树也分别为二叉查找树；</li>
+<li>没有键值相等的节点。</li>
+</ol>
+<p>而且，二叉树与快速排序具有一定的相似性。二叉树的根节点可以看做是快速排序的第一个切分元素（左小又大），且对于子树完全适用，这和快速排序中对子数组的递归排序完全适用。</p>
+<p>二叉查找树的实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BST</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Node(key) &#123;</span><br><span class="line">        <span class="keyword">let</span> left = <span class="literal">null</span>,</span><br><span class="line">            right = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            key,</span><br><span class="line">            left,</span><br><span class="line">            right</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    insert(key) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.root === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.root = <span class="keyword">this</span>.Node(key)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>.insertNode(<span class="keyword">this</span>.root, newNode)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    insertNode(node, newNode) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node.key &gt; newNode.key) &#123;</span><br><span class="line">            <span class="keyword">if</span> (node.left === <span class="literal">null</span>) &#123;</span><br><span class="line">                node.left = newNode</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.insertNode(node.left, newNode)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (node.key &lt; newNode.key) &#123;</span><br><span class="line">                <span class="keyword">if</span> (node.right === <span class="literal">null</span>) &#123;</span><br><span class="line">                    node.right = newNode</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">this</span>.insertNode(node.right, newNode)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//有序性操作</span></span><br><span class="line">    min() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.minNode(<span class="keyword">this</span>.root)</span><br><span class="line">    &#125;</span><br><span class="line">    minNode(node) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            <span class="keyword">while</span> (node &amp;&amp; node.left !== <span class="literal">null</span>) &#123;</span><br><span class="line">                node = node.left</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> node.key</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    max() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.maxNode(<span class="keyword">this</span>.root)</span><br><span class="line">    &#125;</span><br><span class="line">    maxNode(node) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node) &#123;</span><br><span class="line">            <span class="keyword">while</span> (node &amp;&amp; node.right !== <span class="literal">null</span>) &#123;</span><br><span class="line">                node = node.right</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> node.key</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    search(key) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.searchNode(<span class="keyword">this</span>.root, key)</span><br><span class="line">    &#125;</span><br><span class="line">    searchNode(node, key) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node === <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (key &gt; node.key) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.searchNode(node.right, key)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (key &lt; node.key) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.searchNode(node.left, key)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//中序遍历</span></span><br><span class="line">    inOrderTraverse(callback) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.inOrderTraverseNode(<span class="keyword">this</span>.root, callback)</span><br><span class="line">    &#125;</span><br><span class="line">    inOrderTraverseNode(node, callback) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.inOrderTraverseNode(node.left, callback)</span><br><span class="line">            callback(node.key)</span><br><span class="line">            <span class="keyword">this</span>.inOrderTraverseNode(node.right, callback)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//先序遍历</span></span><br><span class="line">    preOrderTraverse(callback) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.preOrderTraverseNode(<span class="keyword">this</span>.root, callback)</span><br><span class="line">    &#125;</span><br><span class="line">    preOrderTraverseNode(node, callback) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">            callback(node.key)</span><br><span class="line">            <span class="keyword">this</span>.preOrderTraverseNode(node.left, callback)</span><br><span class="line">            <span class="keyword">this</span>.preOrderTraverseNode(node.right, callback)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//后序遍历</span></span><br><span class="line">    postOrderTraverse(callback) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.postOrderTraverseNode(<span class="keyword">this</span>.root, callback)</span><br><span class="line">    &#125;</span><br><span class="line">    postOrderTraverseNode(node, callback) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.postOrderTraverseNode(node.left, callback)</span><br><span class="line">            <span class="keyword">this</span>.postOrderTraverseNode(node.right, callback)</span><br><span class="line">            callback(node.key)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//翻转二叉树 注意递归关系</span></span><br><span class="line">    invert(node = <span class="keyword">this</span>.root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.invert(node.left)</span><br><span class="line">            <span class="keyword">this</span>.invert(node.right)</span><br><span class="line">            <span class="keyword">this</span>.exchange(node)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    exchange(node) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = node.left</span><br><span class="line">        node.left = node.right</span><br><span class="line">        node.right = temp</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二叉查找树存在的问题"><a href="#二叉查找树存在的问题" class="headerlink" title="二叉查找树存在的问题"></a>二叉查找树存在的问题</h4><p>使用二叉查找树算法的运行时间取决于树的形状，而树的形状取决于键被插入的先后顺序，最坏情况下，搜索路径上有N个结点。</p>
+<p><img src="http://www.echojb.com/img/2016/10/26/820353-20161024193906765-485385814.png" alt="&quot;二叉查找树 最坏情况&quot;的图片搜索结果"></p>
+<p>正是由于二叉查找树的这种不平衡性质导致查找与插入的时间没有保证，因此一种平衡的二叉树即<strong>平衡二叉树</strong>应运而生。</p>
+<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>我们希望完美的二叉树是<strong>平衡</strong>的，即<strong>根节点到每一个叶节点的距离相等</strong>，也可以看做是一颗含有N个结点的树中，树高为<code>~lgN</code>。</p>
+<p><img src="https://algs4.cs.princeton.edu/33balanced/images/23tree-random.png" alt="Typical 2-3 tree built from random keys"></p>
+<p>为了保证树的平衡性，需要一些灵活性。因此引入<code>3-结点</code>以区分二叉查找树中的<code>2-结点</code></p>
+<blockquote>
+<p>定义：一颗平衡二叉树由以下结点组成</p>
+<ul>
+<li>2-结点：含有一个键（及其对应的值），两个链接，左链接指向的键都小于该结点，右链接指向的键都大于该结点</li>
+<li>3-结点：含有两个键（及其对应的值），三个链接，左链接指向的键都小于该结点，右链接指向的键都大于该结点，<strong>中链接指向的键都位于该结点的两个键之间</strong></li>
+</ul>
+</blockquote>
+<p>一颗完美平衡的平衡二叉树中，所有空链接到根节点的距离是相同的。而平衡二叉树的关键在于<strong>所有局部变换都不会影响整棵树的平衡性和有序性</strong></p>
+<p>下面给出平衡二叉树插入结点的过程，注意观察在插入过程中二叉树的调整，至平衡的过程（图为红黑树，但只要将红链接连接的两个节点看成一个<code>3-节点</code>，即为平衡二叉树）</p>
+<p><img src="https://algs4.cs.princeton.edu/33balanced/images/redblack-construction.png" alt="Red-black BST construction"></p>
+<h4 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h4><p>虽然可以用直白的方式表示出平衡二叉树，单由于在插入结点时要判断的情况过多，难以实现。而在引入了红黑键的情况下，则可以以一种统一的方式实现二叉查找树到平衡二叉树的变换，即红黑树。</p>
+<p>红黑树的基本思想是<strong>用标准的二叉查找树和额外的键颜色信息来表示平衡二叉树</strong>，红链接将2个<code>2-结点</code>相连，构成一个<code>3-结点</code>，黑链接为普通链接。</p>
+<p>红黑树具有以下性质：</p>
+<ul>
+<li>红链接均为左链接</li>
+<li>没有任何一个结点同时与两条红链接相连</li>
+<li>该树是<em>完美黑色平衡</em>的</li>
+</ul>
+<p>可以看到红黑树的结点信息中多出了结点键颜色变量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">redBlackTree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.root = <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Node(key, color) &#123;</span><br><span class="line">        <span class="keyword">let</span> left = <span class="literal">null</span>,</span><br><span class="line">            right = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            key,</span><br><span class="line">            color,			<span class="comment">//相比二叉查找树的结点多了颜色信息</span></span><br><span class="line">            left,</span><br><span class="line">            right</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p>尽管平衡二叉树的查找插入效率很高，但是实现略显复杂。而散列表可以使用简单的方法处理复杂键的值。散列算法的核心是散列函数，其作用为<strong>给定一个键值，返回值在表中的位置</strong></p>
+<p>散列表是在<strong>时间和空间上做出权衡</strong>的典型例子。当没有内存限制时</p>
+<p>下面给出散列表的基本实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hashTable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.table = []</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//散列函数</span></span><br><span class="line">    hashCode(key) &#123;</span><br><span class="line">        <span class="keyword">let</span> hash = <span class="number">5381</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> key) &#123;</span><br><span class="line">            hash = hash*<span class="number">33</span> + key.charCodeAt(i)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> hash % <span class="number">1013</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    put(key, val) &#123;</span><br><span class="line">        <span class="keyword">let</span> pos = <span class="keyword">this</span>.hashCode(key)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;pos&#125;</span>-<span class="subst">$&#123;key&#125;</span>`</span>)</span><br><span class="line">        <span class="keyword">this</span>.table[pos] = val</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    get(key) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.table[<span class="keyword">this</span>.hashCode(key)]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    remove(key) &#123;</span><br><span class="line">        <span class="keyword">let</span> pos = <span class="keyword">this</span>.hashCode(key)</span><br><span class="line">        <span class="keyword">this</span>.table[pos] = <span class="literal">undefined</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该散列表根据输入的字符串键进行散列运算，获取键，然后置入散列表中。但是这种方法不是没有问题的，当给定不同输入，经过散列函数处理得到相同的键时，便产生了<strong>碰撞冲突</strong></p>
+<p><img src="https://algs4.cs.princeton.edu/34hash/images/hashing-crux.png" alt="crux of hashing"></p>
+<p>要解决碰撞冲突有两种办法，即拉链法（分离链接法）与线性探测法</p>
+<h4 id="拉链法（分离链接法）"><a href="#拉链法（分离链接法）" class="headerlink" title="拉链法（分离链接法）"></a>拉链法（分离链接法）</h4><p>拉链法即为散列表的每一个位置创建一个<strong>链表</strong>，并将重复的元素储存在里面，但它在创建hashTable之外还要额外的储存空间</p>
+<p><img src="http://www.leevii.com/wp-content/uploads/2018/06/560844754-58b8dc2cc8ee5_articlex.png" alt="分离链接法"></p>
+<p>且相应的put,get等方法都要做出改动，下面仅给出put方法的实现，其他方法类似，都要引入链表。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">key, value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pos = hashCode(key)</span><br><span class="line">    <span class="keyword">if</span>(table[pos] === <span class="literal">undefined</span>)&#123;</span><br><span class="line">        table[pos] = <span class="keyword">new</span> LinkedList()</span><br><span class="line">    &#125;</span><br><span class="line">    table[pos].append(<span class="keyword">new</span> ValuePair(key, value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<h4 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h4><p>线性探测法的思想即：当向表中某一个位置加入一个新元素时，如果索引位于index的键已经被占用了，就尝试index+1，如果依然占用，就尝试index+2，以此类推</p>
+<p><img src="https://algs4.cs.princeton.edu/34hash/images/linear-probing.png" alt="hashing with linear probing"></p>
+<p>下面给出线性探测法put方法的实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pos = hashCode(key)</span><br><span class="line">    <span class="keyword">if</span> (table[pos] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        table[pos] = <span class="keyword">new</span> ValuePair(key, value)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> index = pos</span><br><span class="line">        <span class="keyword">while</span> (++index) &#123;</span><br><span class="line">            <span class="keyword">if</span> (table[pos] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">                table[pos] = <span class="keyword">new</span> ValuePair(key, value)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="各数据结构性能及优缺点比较"><a href="#各数据结构性能及优缺点比较" class="headerlink" title="各数据结构性能及优缺点比较"></a>各数据结构性能及优缺点比较</h3><p>综上，可以评价出各种查找方法的优缺点。从以下性能表中可以看出，对于典型的应用程序，应该选择平衡二叉树或散列表方法。</p>
+<p>由于散列表的实现较简单且查找时间最优，大部分情况下我们选择散列表进行查找操作。</p>
+<table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>最坏查找</th>
+<th>最坏插入</th>
+<th>平均查找</th>
+<th>平均插入</th>
+<th>內存使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无序链表</td>
+<td>N</td>
+<td>N</td>
+<td>N/2</td>
+<td>N</td>
+<td>48N</td>
+</tr>
+<tr>
+<td>有序数组(二分)</td>
+<td>lgN</td>
+<td>N</td>
+<td>lgN</td>
+<td>N/2</td>
+<td>16N</td>
+</tr>
+<tr>
+<td>二叉查找树</td>
+<td>N</td>
+<td>N</td>
+<td>1.39lgN</td>
+<td>1.39lgN</td>
+<td>64N</td>
+</tr>
+<tr>
+<td>红黑树</td>
+<td>2lgN</td>
+<td>2lgN</td>
+<td>lgN</td>
+<td>lgN</td>
+<td>64N</td>
+</tr>
+<tr>
+<td>拉链法</td>
+<td>&lt;lgN</td>
+<td>&lt;lgN</td>
+<td>N/2M</td>
+<td>N/M</td>
+<td>48N+32M*</td>
+</tr>
+<tr>
+<td>线性探测法</td>
+<td>clgN</td>
+<td>clgN</td>
+<td>&lt;1.5</td>
+<td>&lt;2.5</td>
+<td>32N-128N</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有序数组（二分查找）</td>
+<td>最优的查找效率和空间需求，能够进行有序性相关操作</td>
+<td>插入操作很慢</td>
+</tr>
+<tr>
+<td>二叉搜索树</td>
+<td>实现简单，能进行有序性相关操作</td>
+<td>没有性能上界的保证，链接需要额外空间</td>
+</tr>
+<tr>
+<td>平衡二叉树</td>
+<td>最优的查找和插入效率，能够进行有序性相关操作</td>
+<td>链接需要额外空间</td>
+</tr>
+<tr>
+<td>散列表</td>
+<td>能够快速查找和插入常见的数据类型</td>
+<td>需要计算每种数据类型的散列，无法进行有序性相关操作，链接和空节点需要额外空间</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/算法/">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/08/02/查找/&title=《查找》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/08/02/查找/&title=《查找》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/08/02/查找/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《查找》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/08/02/查找/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/08/02/查找/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/07/26/再谈排序/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">再谈排序</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/08/02/查找/&title=《查找》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/08/02/查找/&title=《查找》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/08/02/查找/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《查找》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/08/02/查找/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/08/02/查找/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3ay27bMBAF0Pz/T7tAVi1Sy/dynKYij1ZGIos8CjDhPD4+4uvxef3++eu19t2vd14/bXRhYGDclvG4vJ4t0G79ervJui9eHAYGxgGMPFC2gXV+z/VaGBgYGNdBMz8svjesY2BgYFwzkoXzn/xYwMXAwLghIwmFSVKah+n2pbwtF8fAwLghY60x8G8+f3t/AwMD479nPMorKe6/q5FQ7AoDA2NrRnuwe9dBcBJeixMuBgbGRoy1MNc2ONcKbfUAGQYGxnaM+XFtLQFuQ/YLHgYGxtaMJBLPG5BtYtz+G8DAwDiNMW8lrm2lfVod3TEwMG7LaMNrdDiL09okJY7SZgwMjGMYebEs33TS5lxj//EEDAyMAxhtqzI/j7Xhda1gh4GBsTcjD3z5kbEdqlhrFfzltxgYGAcw8pQyD8otbzQzgoGBcRhjbYB1MhDWpr4YGBjnMPJ24yR05sG3baDWXVMMDIzbMpKhhzz5bJ+Wh+wXwxYYGBibMtoGQBJG6zLZ0quJym0YGBhbMNr2ZN5WnNzftjMxMDDOZORpbVvQLzaHgYGB8SShbdPL/Ai4xsvHzjAwMHZlTEpmSYk/b08m4KffwsDA2JqxVo5PimWT6Y/rtUaBGwMD47aMvAQ/GR2bp8Ev/gIYGBgHMNog2xbI8iGwdsgDAwMDIznk5S2EBLD4UjAwMDCWjmttEts2LzEwME5j5Ens2ibaJmibTmNgYOzNmCyWv4g8uI+KbhgYGLsxfgGYkXrAxKOeVAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
