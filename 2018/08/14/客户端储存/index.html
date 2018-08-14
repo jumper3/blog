@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>No title | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="-– title: 客户端储存 date: 2018-8-14 19:39:00 tags: 前端性能优化 -– 随着WebApp的出现，产生了在客户端上储存用户信息的要求。下面将介绍常用的3种客户端储存方案，即cookie、localStorage、sessionStorage。通过将部分数据缓存在客户端以减少HTTP请求，可以达到性能优化的效果。 cookieHTTP cookie，简称coo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No title">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/08/14/客户端储存/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="-– title: 客户端储存 date: 2018-8-14 19:39:00 tags: 前端性能优化 -– 随着WebApp的出现，产生了在客户端上储存用户信息的要求。下面将介绍常用的3种客户端储存方案，即cookie、localStorage、sessionStorage。通过将部分数据缓存在客户端以减少HTTP请求，可以达到性能优化的效果。 cookieHTTP cookie，简称coo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-14T11:40:03.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="No title">
+<meta name="twitter:description" content="-– title: 客户端储存 date: 2018-8-14 19:39:00 tags: 前端性能优化 -– 随着WebApp的出现，产生了在客户端上储存用户信息的要求。下面将介绍常用的3种客户端储存方案，即cookie、localStorage、sessionStorage。通过将部分数据缓存在客户端以减少HTTP请求，可以达到性能优化的效果。 cookieHTTP cookie，简称coo">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">No title</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">No title</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-14T08:17:44.000Z" itemprop="datePublished" class="page-time">
+  2018-08-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cookie"><span class="post-toc-number">1.</span> <span class="post-toc-text">cookie</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#cookie的构成"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">cookie的构成</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#cookie的限制与适用范围"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">cookie的限制与适用范围</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Web储存机制"><span class="post-toc-number">2.</span> <span class="post-toc-text">Web储存机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Storage类"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Storage类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#sessionStorage"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">sessionStorage</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#localStorage"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">localStorage</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Web储存的限制"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">Web储存的限制</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-客户端储存"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">No title</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-14 16:17:44" datetime="2018-08-14T08:17:44.000Z"  itemprop="datePublished">2018-08-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>-–</p>
+<p>title: 客户端储存</p>
+<p>date: 2018-8-14 19:39:00</p>
+<p>tags: 前端性能优化</p>
+<p>-–</p>
+<p>随着WebApp的出现，产生了在客户端上储存用户信息的要求。下面将介绍常用的3种客户端储存方案，即cookie、localStorage、sessionStorage。通过将部分数据缓存在客户端以减少HTTP请求，可以达到性能优化的效果。</p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>HTTP cookie，简称cookie，最初用于在客户端储存会话信息。现用于用户识别与状态管理。服务器会将一些数据临时写入客户端计算机内，当用户访问该网站时，可取回cookie</p>
+<p>cookie有关的操作写入<strong>HTTP请求、响应头</strong>内。先是由服务器在响应阶段发送Set-Cookie给客户端。每一个cookie以name为名称，value为值，而客户端保存该cookie。响应头如下</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Content-type</span>: text/html</span><br><span class="line"><span class="attribute">Set-Cookie</span>: status=enable; expires=Tue, 05 Jul 2011 07:26:31 GMT; path=/; domain= .hackr.jP;</span><br><span class="line"><span class="attribute">Other-header</span>: other-header-value</span><br></pre></td></tr></table></figure>
+<p>客户端的请求如下</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/index.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Cookie</span>: status=enable</span><br><span class="line"><span class="attribute">Other-header</span>: other-header-value</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>首部字段类型</th>
+<th>发送者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set-Cookie</td>
+<td>开始状态管理所使用的Cookie信息</td>
+<td>响应</td>
+<td>服务器</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>服务器接收到的Cookie信息</td>
+<td>请求</td>
+<td>客户端</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cookie的构成"><a href="#cookie的构成" class="headerlink" title="cookie的构成"></a>cookie的构成</h4><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME=VALUE</td>
+<td>赋予Cookie的名称和其值(必需项)</td>
+</tr>
+<tr>
+<td>expires=DATE</td>
+<td>Cookie的有效期(若不明确指定则默认为浏览器关闭前为止)</td>
+</tr>
+<tr>
+<td>path=PATH</td>
+<td>将服务器上的文件目录作为Cookie的适用对象(若不指定则默认为文档所在的文件目录)</td>
+</tr>
+<tr>
+<td>domain=域名</td>
+<td>作为Cookie适用对象的域名(若不指定则默认为创建Cookie)的服务器域名</td>
+</tr>
+<tr>
+<td>Secure</td>
+<td>仅在HTTPS安全通信时才发送cookie</td>
+</tr>
+<tr>
+<td>HttpOnly</td>
+<td>加以限制，防止cookie被js脚本访问（防止XSS）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cookie的限制与适用范围"><a href="#cookie的限制与适用范围" class="headerlink" title="cookie的限制与适用范围"></a>cookie的限制与适用范围</h4><p>cookie在性质上是绑定在特定的域名下的。当设定了一个cookie后，再给创建它的域名发送请求时，都会包含这个cookie。这个限制确保了储存在cookie中的信息只能让批准的接受者访问，而无法被其他域访问。</p>
+<p>由于cookie是存在客户端计算机上的，还加入了一些限制确保cookie不会被恶意使用，同时不会占<br>据太多磁盘空间。每个域的cookie总数是有限的。</p>
+<p>浏览器中对于cookie的尺寸也有限制。大多数浏览器都有大约4096B(加减1)的长度限制。为了<br>最佳的浏览器兼容性，最好将整个cookie长度限制在4095B(含4095)以内。</p>
+<p>由于所有的cookie都会由浏览器作为请求头发送，所以在cookie中存储大量信息会影响到特定域的请求性能。<strong>cookie信息越大，完成对服务器请求的时间也就越长。</strong>尽管浏览器对cookie进行了大小限制,不过最好还是尽可能在cookie中少存储信息，以避免影响性能。</p>
+<blockquote>
+<p> 一定不要在cookie中存储重要和敏感的数据。cookie数据并非存储在一个安全环境中，其中包含的任何数据都可以被他人访问。所以不要在cookie中存储诸如银行卡账号密码或者个人地址之类的数据。</p>
+</blockquote>
+<p>cookie的性质和它的局限使得其并不能作为存储大量信息的理想手段，所以又出现了其他方法。</p>
+<h3 id="Web储存机制"><a href="#Web储存机制" class="headerlink" title="Web储存机制"></a>Web储存机制</h3><p>在HTML5 规范中引入了sessionStorage与localStorage，旨在解决：</p>
+<ul>
+<li>提供一种在cookie之外的会话数据解决途径</li>
+<li>提供一种可大量储存会话的数据机制</li>
+</ul>
+<h4 id="Storage类"><a href="#Storage类" class="headerlink" title="Storage类"></a>Storage类</h4><p>作为含有通用方法的原型，sessionStorage与localStorage皆继承自Storage类，因此有部分通用API。</p>
+<p>Storage类提供最大的储存空间来储存<strong>名值对</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clear()</td>
+<td>删除所有值</td>
+</tr>
+<tr>
+<td>getItem(name)</td>
+<td>根据指定键获取相应值</td>
+</tr>
+<tr>
+<td>key(index)</td>
+<td>获取index处的键</td>
+</tr>
+<tr>
+<td>removeItem(name)</td>
+<td>删除键为name的名值对</td>
+</tr>
+<tr>
+<td>setItem(name,value)</td>
+<td>为name设定一个对应的值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage对象储存某个特定会话的数据，且该数据<strong>保存到浏览器关闭</strong>。sessionStorage可以跨页面刷新而存在。由于其继承自Storage类，所以拥有以上表格的方法。</p>
+<p>sessionStorage对象主要用于仅针对对话的小段数据的储存。若需要跨越会话储存数据，则需要使用到localStorage对象。</p>
+<h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><p>若需要在浏览器关闭后依然能够缓存数据在客户端，则需要localStorage对象。要访问同一个localStorage对象，页面必须<strong>来自同一个域名、使用同一种协议、在同一个端口上</strong>。且像sessionStorage一样，localStorge也继承来自于Storage类的方法。</p>
+<p>储存在localStorage中的数据保留到JavaScript删除或是用户清理浏览器缓存。</p>
+<h4 id="Web储存的限制"><a href="#Web储存的限制" class="headerlink" title="Web储存的限制"></a>Web储存的限制</h4><p>Web储存的限制因浏览器而异。一般来说，对于储存空间大小的限制是以每个来源（域名、协议、端口）为单位的。在使用时应当注意限制。</p>
+<p>对于localStorage而言，大多数桌面浏览器会设置每个来源5MB的限制。Chrome和Safari 对每</p>
+<p>个来源的限制是2.5MB。而iOS版Safari和Android 版WebKit 的限制也是2.5MB。</p>
+<p>对sessionstorage的限制也是因浏览器而异。有的浏览器对sessionStorage的大小没有限制，</p>
+<p>但Chrome、Safari、iOS版Safari和Android 版WebKit都有限制，也都是2.5MB。 </p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/08/14/客户端储存/&title=《No title》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/08/14/客户端储存/&title=《No title》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/08/14/客户端储存/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/08/14/客户端储存/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/08/14/客户端储存/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/08/02/查找/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">查找</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/08/14/客户端储存/&title=《No title》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/08/14/客户端储存/&title=《No title》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/08/14/客户端储存/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/08/14/客户端储存/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/08/14/客户端储存/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3azW6EMAxFYd7/pem2Uks41x5GwjmsqulA8rHwxD/Hga/zz/X786tvXn2HrHI8ccmQIeO1jHN5rTeXLrx+AlnlckUZMmRswCBLkhC5htUY6+fIkCFDBlm+xib3ypAhQ8anAi4PvjwNliFDhoxaEktCZ60+1jk+ypAhYwdGrUz2nb8f6W/IkCHjVYwzvMi9aTuTh9fLFWXIkDGawQMcP5DVNk2S6pv9yJAhYyiDDzfwLT6d1qLbZMiQMYjBW4w8vNaGyTptVBkyZMxm8NQ0Dc21yhhqVcqQIWMzBi+f8eSzNvjFfxOK/VgZMmS8nJEmq7zonzZHW8U+GTJkDGWQ9DIt+tcGy3gq+8/nMmTI2IBBBiZ4uKwFYvLLcFNukyFDxmYMPubFz2Z8/CsutMmQIWMbRhoE0/GvdNSjNTMiQ4aMQQzeN/hsqyANvsHMiAwZMrZkpOllZ0SMp743TQIZMmSMY/Al++3JNFUO/itDhowNGOncQlpiS8t2KV6GDBn7MPq1rHhUAvNuVpQhQ8YGjFq7kbcN1s9PGUESK0OGjEEMXlyrtT9bjUkQ7mXIkDGVcYZX59jHX0fcKpAhQ8ZoRj/Y8cCaFuNqh0gZMmRMZfDhrTRkx8V9cpLlb1qGDBnjGLXAV2s3do59N+dcGTJkyMDbTZsB/YEMGTJkyODjYumLSIMsGmCVIUPGUAYPoOnW+V1pyJYhQ8Y+jFrIq41ikHJe/1gpQ4aMQYwf9ycD8WXEItAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
