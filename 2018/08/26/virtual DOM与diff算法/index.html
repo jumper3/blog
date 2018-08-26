@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>virtual DOM与diff算法（一） | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="前言在当今流行的MVVM框架如Vue.js、React框架中，一个重要的特性就是virtual Dom。通过其核心算法diff，高效的将数据层的变化反映在视图层中。受到了livoras同学文章的启发，下面将从三部分介绍virtual DOM与diff算法。通过了解该算法，有助于理解当今流行前端框架的原理，也能从中复习到有关深度优先搜索的算法知识。 virtual DOM的必要性受制于以往标准的拖累">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="virtual DOM与diff算法（一）">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="前言在当今流行的MVVM框架如Vue.js、React框架中，一个重要的特性就是virtual Dom。通过其核心算法diff，高效的将数据层的变化反映在视图层中。受到了livoras同学文章的启发，下面将从三部分介绍virtual DOM与diff算法。通过了解该算法，有助于理解当今流行前端框架的原理，也能从中复习到有关深度优先搜索的算法知识。 virtual DOM的必要性受制于以往标准的拖累">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p83tbytg8.bkt.clouddn.com/image/blog/WechatIMG75.jpeg">
+<meta property="og:image" content="http://p83tbytg8.bkt.clouddn.com/image/blog/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-08-26%20%E4%B8%8B%E5%8D%8811.14.07.png">
+<meta property="og:updated_time" content="2018-08-26T15:17:17.723Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="virtual DOM与diff算法（一）">
+<meta name="twitter:description" content="前言在当今流行的MVVM框架如Vue.js、React框架中，一个重要的特性就是virtual Dom。通过其核心算法diff，高效的将数据层的变化反映在视图层中。受到了livoras同学文章的启发，下面将从三部分介绍virtual DOM与diff算法。通过了解该算法，有助于理解当今流行前端框架的原理，也能从中复习到有关深度优先搜索的算法知识。 virtual DOM的必要性受制于以往标准的拖累">
+<meta name="twitter:image" content="http://p83tbytg8.bkt.clouddn.com/image/blog/WechatIMG75.jpeg">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">virtual DOM与diff算法（一）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">virtual DOM与diff算法（一）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-08-26T15:17:59.000Z" itemprop="datePublished" class="page-time">
+  2018-08-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#virtual-DOM的必要性"><span class="post-toc-number">2.</span> <span class="post-toc-text">virtual DOM的必要性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#render函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">render函数</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-virtual DOM与diff算法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">virtual DOM与diff算法（一）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-08-26 23:17:59" datetime="2018-08-26T15:17:59.000Z"  itemprop="datePublished">2018-08-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在当今流行的MVVM框架如Vue.js、React框架中，一个重要的特性就是virtual Dom。通过其核心算法diff，<strong>高效的将数据层的变化反映在视图层中</strong>。受到了<a href="https://github.com/livoras/blog/issues/13" target="_blank" rel="noopener">livoras同学</a>文章的启发，下面将从三部分介绍virtual DOM与diff算法。通过了解该算法，有助于理解当今流行前端框架的原理，也能从中复习到有关深度优先搜索的算法知识。</p>
+<h3 id="virtual-DOM的必要性"><a href="#virtual-DOM的必要性" class="headerlink" title="virtual DOM的必要性"></a>virtual DOM的必要性</h3><p>受制于以往标准的拖累，DOM规范已经十分臃肿。举个栗子：</p>
+<p>我们先看看目前DOM的附带的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line"><span class="keyword">let</span>	keys = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> el)&#123;</span><br><span class="line">	keys = keys + key + <span class="string">" "</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(keys)	<span class="comment">/*align title lang translate dir dataset hidden tabIndex accessKey draggable spellcheck autocapitalize contentEditable isContentEditable inputMode offsetParent offsetTop offsetLeft offsetWidth offsetHeight style innerText 等235个*/</span></span><br></pre></td></tr></table></figure>
+<p>仅仅一个DOM元素就附带了如此多的属性，那么在大规模重构的时候的效率应当是相当低下的。</p>
+<p>假设我们找火锅店。要迅速根据条件排列已有的数据，通过重绘DOM无法做到在大数据量的情况下快速在视图层体现出来。</p>
+<p><img src="http://p83tbytg8.bkt.clouddn.com/image/blog/WechatIMG75.jpeg" alt="img"></p>
+<p>因此，我们可以尝试将DOM简化至我们需要的最小模型。举一个栗子，假如我们要实现以下结构：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>item4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>只需要提供以下数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ul = &#123;</span><br><span class="line">    tagName: <span class="string">"ul"</span>,</span><br><span class="line">    props: &#123;</span><br><span class="line">        id: <span class="string">"list"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">        &#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item1"</span>]&#125;,</span><br><span class="line">        &#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item2"</span>]&#125;,</span><br><span class="line">        &#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item3"</span>]&#125;,</span><br><span class="line">        &#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item4"</span>]&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，根据所提供的数据结构，就可以通过我们定义的<strong>render函数将其绘制出来</strong>，一旦数据发生改变，我们根据变动的情况，使用diff算法求得<strong>需要改动DOM的最小部分</strong>，将其存入patch缓存中。最后通过patch函数，将diff求得的改动应用到DOM树上。</p>
+<p>以上，就是virtual DOM实现高效修改DOM树的基本原理。通过总结我们也发现，vitural DOM的实现是<strong>在目前规范限制下工程化的妥协</strong>。</p>
+<h3 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h3><p>那么，有了以上提供的ul标签的数据原型，如何将其转化为真正的DOM树呢？</p>
+<p>只需要调用最基本的DOM API即可实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//element为vitural DOM的基本类，包含标签名、属性、子节点三个基本属性</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">element</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(object) &#123;</span><br><span class="line">        <span class="keyword">this</span>.tagName = object.tagName</span><br><span class="line">        <span class="keyword">this</span>.props = object.props</span><br><span class="line">        <span class="keyword">this</span>.children = object.children</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">let</span> el = <span class="built_in">document</span>.createElement(<span class="keyword">this</span>.tagName)</span><br><span class="line">        <span class="comment">//遍历vitural DOM的属性，传给真正的DOM</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> propName <span class="keyword">in</span> <span class="keyword">this</span>.props) &#123;</span><br><span class="line">            <span class="keyword">let</span> propValue = <span class="keyword">this</span>.props[propName]</span><br><span class="line">            el.setAttribute(propName, propValue)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> children = <span class="keyword">this</span>.children || []</span><br><span class="line">        children.forEach(<span class="function"><span class="params">child</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> childEl</span><br><span class="line">            <span class="comment">//如果子节点也是虚拟DOM，递归渲染</span></span><br><span class="line">            <span class="keyword">if</span> (child <span class="keyword">instanceof</span> element) &#123;</span><br><span class="line">                childEl = child.render()</span><br><span class="line">                <span class="comment">//如果是字符串，直接构建文本节点</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                childEl = <span class="built_in">document</span>.createTextNode(child)</span><br><span class="line">            &#125;</span><br><span class="line">            el.appendChild(childEl)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> el</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，我们就实现了一个最基本的vitural DOM，已经可以实现从数据到视图的转换。现在，只需要稍加修改刚才的ul数据结构，使其符合要求，就可以渲染：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ul = &#123;</span><br><span class="line">    tagName: <span class="string">"ul"</span>,</span><br><span class="line">    props: &#123;</span><br><span class="line">        id: <span class="string">"list"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">        <span class="comment">//子节点也为一个vitural DOM类</span></span><br><span class="line">        <span class="keyword">new</span> element(&#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item1"</span>]&#125;),</span><br><span class="line">        <span class="keyword">new</span> element(&#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item2"</span>]&#125;),</span><br><span class="line">        <span class="keyword">new</span> element(&#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item3"</span>]&#125;),</span><br><span class="line">        <span class="keyword">new</span> element(&#123;<span class="attr">tagName</span>: <span class="string">"li"</span>, <span class="attr">props</span>: &#123;<span class="attr">class</span>: <span class="string">"item"</span>&#125;, <span class="attr">children</span>: [<span class="string">"item4"</span>]&#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，调用render实现渲染：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ele = <span class="keyword">new</span> element(ul),</span><br><span class="line">    ulRoot = ele.render()</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(ulRoot)</span><br></pre></td></tr></table></figure>
+<p><img src="http://p83tbytg8.bkt.clouddn.com/image/blog/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-08-26%20%E4%B8%8B%E5%8D%8811.14.07.png" alt="img"></p>
+<p>下一节，我们讲讲核心的diff算法和patch函数</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/&title=《virtual DOM与diff算法（一）》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/&title=《virtual DOM与diff算法（一）》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《virtual DOM与diff算法（一）》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/08/14/客户端储存/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">客户端储存</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/&title=《virtual DOM与diff算法（一）》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/&title=《virtual DOM与diff算法（一）》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《virtual DOM与diff算法（一）》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/08/26/virtual DOM与diff算法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3aQY7bMAwF0Nz/0lOgqwFaZ/4nJTQFnleBk9h6WlAEydcrvr5+X+/vfL//9G3ym+/3v/64XjcuPDw8vNHSn64EM/u8WUPyezw8PLzbvHzps0D/9Jt8I9rtxsPDw/sEXp7sJtuxSeLx8PDw/hdeu9wk0Cdp9CzFx8PDw7vNy1+TvDgv8rZbcLHWgoeHhxfz2gbYJ3y+2N/Dw8PDW3TVk7B7alAgf0KxTjw8PLwLvPwFSXm3KBDE5do2KX/N9g8PDw8v5uXjTe2L2yJFAs637/Hcw8PDwzvKmxUm2sNmP4BVUPHw8PAu8/LHbUYKNm22urCLh4eHd42XFAVOhfj8v8lhEBVw8fDw8I7ycliSwiYF2Tzot+t5fA4eHh7eNd5moWc3YjOIMOyY4eHh4Y14bfhuA/qBGYe2GIGHh4d3gdeOpc7+O2uJbYq50TQuHh4e3oL3/nGz4unZIYB23AoPDw/vNm/zgv2gQF5iqNeAh4eHd403S3lnFYA2BX/FVzQZgYeHh3eU17aX8qQ5KRDvD4y/PA0PDw/vAm8T0NuxgDzQv2+5DbcDDw8P7xqvfUGbFucJerJNxRGCh4eHd5SXh9396EBbom1LIT/UqvHw8PAO8U6VADbpct6Qy1NtPDw8vHu8fQEiKctuDoz84Hlsg+Hh4eEd5bVBeRa+22S6baH1kwV4eHh4c14b4vOUOnnCja0pRq/w8PDw1ry8rLBpU7XJ9Gtz4eHh4R3lzQat2oZZUp5o70SFYDw8PLwLvFOHR74Rs3GE5IBZHSR4eHh4JS8/DN4H383AwabF9cP24eHh4V3jnSpStJuV38nLFnh4eHifzNskzXmivHovHh4e3j/lJcl0G9Bnz6+LEXh4eHgXeJum16zlP2u51SMOeHh4eBd4myCej2Elz5kl6AeGtPDw8PDSVf0CLa8/pG1ksygAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
