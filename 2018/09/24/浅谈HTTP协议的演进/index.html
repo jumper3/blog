@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>浅谈HTTP协议的演进 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="http">
+    <meta name="description" content="本文介绍了前端开发涉及的网络协议HTTP与WebSocket。HTTP协议部分着重介绍协议的演进与区别。而WebSocket则主要介绍来由和用法。  HTTP1.0/HTTP1.1/HTTP2HTTP协议简介 HTTP（HyperText Transfer Protocol）协议为TCP/IP协议族中的一员，属于应用层协议。 HTTP协议用于客户端与服务器之间的通信 HTTP通过请求（reque">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈HTTP协议的演进">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="本文介绍了前端开发涉及的网络协议HTTP与WebSocket。HTTP协议部分着重介绍协议的演进与区别。而WebSocket则主要介绍来由和用法。  HTTP1.0/HTTP1.1/HTTP2HTTP协议简介 HTTP（HyperText Transfer Protocol）协议为TCP/IP协议族中的一员，属于应用层协议。 HTTP协议用于客户端与服务器之间的通信 HTTP通过请求（reque">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://mdn.mozillademos.org/files/13727/HTTP1_x_Connections.png">
+<meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1492423504046_4739_1492423504526.png">
+<meta property="og:updated_time" content="2018-09-24T14:56:25.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈HTTP协议的演进">
+<meta name="twitter:description" content="本文介绍了前端开发涉及的网络协议HTTP与WebSocket。HTTP协议部分着重介绍协议的演进与区别。而WebSocket则主要介绍来由和用法。  HTTP1.0/HTTP1.1/HTTP2HTTP协议简介 HTTP（HyperText Transfer Protocol）协议为TCP/IP协议族中的一员，属于应用层协议。 HTTP协议用于客户端与服务器之间的通信 HTTP通过请求（reque">
+<meta name="twitter:image" content="https://mdn.mozillademos.org/files/13727/HTTP1_x_Connections.png">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">浅谈HTTP协议的演进</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">浅谈HTTP协议的演进</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-24T14:17:59.000Z" itemprop="datePublished" class="page-time">
+  2018-09-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP1-0-HTTP1-1-HTTP2"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTTP1.0/HTTP1.1/HTTP2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP协议简介"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">HTTP协议简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP1-0与HTTP1-1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">HTTP1.0与HTTP1.1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTPS"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">HTTPS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#HTTP的缺点"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">HTTP的缺点</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#SSL"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">SSL</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#数字证书"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">数字证书</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#完整性保护"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">完整性保护</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#HTTPS带来的问题"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">HTTPS带来的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP2"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">HTTP2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-多路复用"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">1. 多路复用</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-header压缩"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">2. header压缩</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-服务端推送Server-Push"><span class="post-toc-number">1.4.3.</span> <span class="post-toc-text">3. 服务端推送Server Push</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WebSocket"><span class="post-toc-number">2.</span> <span class="post-toc-text">WebSocket</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#WebSocket的特点"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">WebSocket的特点</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-浅谈HTTP协议的演进"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">浅谈HTTP协议的演进</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-24 22:17:59" datetime="2018-09-24T14:17:59.000Z"  itemprop="datePublished">2018-09-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>本文介绍了前端开发涉及的网络协议HTTP与WebSocket。HTTP协议部分着重介绍协议的演进与区别。而WebSocket则主要介绍来由和用法。</p>
+</blockquote>
+<h3 id="HTTP1-0-HTTP1-1-HTTP2"><a href="#HTTP1-0-HTTP1-1-HTTP2" class="headerlink" title="HTTP1.0/HTTP1.1/HTTP2"></a>HTTP1.0/HTTP1.1/HTTP2</h3><h4 id="HTTP协议简介"><a href="#HTTP协议简介" class="headerlink" title="HTTP协议简介"></a>HTTP协议简介</h4><ul>
+<li><strong>HTTP</strong>（HyperText Transfer Protocol）协议为TCP/IP协议族中的一员，属于<strong>应用层</strong>协议。</li>
+<li>HTTP协议用于<strong>客户端与服务器之间的通信</strong></li>
+<li>HTTP通过请求（request）和响应（response）达成通信</li>
+<li>HTTP是<strong>无状态</strong>协议，即协议不对之前发送过的请求和响应进行保存处理</li>
+<li>HTTP通过URI定位资源</li>
+</ul>
+<h4 id="HTTP1-0与HTTP1-1"><a href="#HTTP1-0与HTTP1-1" class="headerlink" title="HTTP1.0与HTTP1.1"></a>HTTP1.0与HTTP1.1</h4><p>早期网页采用HTTP1.0协议，HTTP1.1则在1999年才开始广泛应用于现在的各大浏览器网络请求中，目前HTTP1.1是当前使用最为广泛的HTTP协议。 <strong>主要区别主要体现在：</strong></p>
+<ol>
+<li><strong>缓存处理，</strong>在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如<strong>ETag</strong>，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</li>
+<li><strong>带宽优化及网络连接的使用</strong>，HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</li>
+<li><strong>错误通知的管理</strong>，在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</li>
+<li><strong>Host头处理</strong>，在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</li>
+<li><strong>长连接</strong>，HTTP 1.1支持长连接（PersistentConnection）和请求的流水线（Pipelining）处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，<strong>在HTTP1.1中默认开启Connection： keep-alive</strong>，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。<img src="https://mdn.mozillademos.org/files/13727/HTTP1_x_Connections.png" alt="Compares the performance of the three HTTP/1.x connection models: short-lived connections, persistent connections, and HTTP pipelining."></li>
+</ol>
+<p>中间一图为长连接，由于始终保持连接，避免了频繁建立和关闭连接的时间成本。</p>
+<p>最右边一图则为管线化，是HTTP2多路复用的雏形，HTTP2又在其基础上进行了修改。管线化在目前大多数浏览器中不得以实现，因此取而代之的是HTTP2中的多路复用。</p>
+<h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h4><h5 id="HTTP的缺点"><a href="#HTTP的缺点" class="headerlink" title="HTTP的缺点"></a>HTTP的缺点</h5><ul>
+<li>通信使用明文，不进行加密，内容可能被窃听</li>
+<li>不验证通信方身份，可能遭遇伪装</li>
+<li>无法验证报文完整性，可能遭到篡改</li>
+</ul>
+<p>为了解决HTTP以上涉及安全性的缺点，诞生了HTTPS协议。</p>
+<p>HTTPS主要从<strong>加密、认证、完整性保护</strong>三个方面下手解决通信的安全性问题</p>
+<h5 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h5><p>针对HTTP协议可能被窃听的缺点，通过增加一层SSL（Secure Socket Layer）或TLS（Transport Layer Security），HTTP就演进成为了HTTPS。可以说SSL或TLS层就是HTTPS的核心。</p>
+<h5 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h5><p>为了验证通信方身份，通常服务器需要购买由CA机构颁发的数字证书。</p>
+<ul>
+<li><p>使用权威的第三方机构也就是CA向安全的服务器颁发证书。来证明这台服务器的合法性。</p>
+</li>
+<li><p>服务器通过这个证书来把自己的公钥加密以后发给客户端</p>
+</li>
+<li><p>客户端收到这个加密后的公钥以后 ，就用第三方机构的公钥 把这个服务器返回的加密后的公钥 解密 从而得到真正的服务器 的公钥</p>
+</li>
+</ul>
+<h5 id="完整性保护"><a href="#完整性保护" class="headerlink" title="完整性保护"></a>完整性保护</h5><p>为了防止篡改通常使用MD5或SHA-1确定报文的完整性</p>
+<h5 id="HTTPS带来的问题"><a href="#HTTPS带来的问题" class="headerlink" title="HTTPS带来的问题"></a>HTTPS带来的问题</h5><ul>
+<li>速度变慢</li>
+</ul>
+<p>由于在通信协议中增加了一层，导致整体通信量增加以及花费更多CPU、内存资源去加密解密，这些都会影响速度</p>
+<ul>
+<li>成本问题</li>
+</ul>
+<p>申请HTTPS证书通常都需要费用。证书费用与网站规模与安全等级正相关</p>
+<h4 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h4><p>HTTP2有以下新特性，使通信变得更迅速，目前也已经得到了广泛使用</p>
+<h5 id="1-多路复用"><a href="#1-多路复用" class="headerlink" title="1. 多路复用"></a>1. 多路复用</h5><p><img src="https://blog-10039692.file.myqcloud.com/1492423504046_4739_1492423504526.png" alt="img"></p>
+<p>由于HTTP2可以在一条请求中获取多个静态文件，减少了请求次数，使得通信时间大幅缩短。</p>
+<p>HTTP2把要传输的信息分割成一个个二进制帧，首部信息会被封装到HEADER Frame，相应的request body就放到DATA Frame，充分利用了网络带宽，提高了并发度。更进一步，http2还能对这些流指定优先级，优先级能动态的被改变，例如把CSS和JavaScript文件设置得比图片的优先级要高，这样代码文件能更快的下载下来并得到执行。</p>
+<h5 id="2-header压缩"><a href="#2-header压缩" class="headerlink" title="2. header压缩"></a>2. header压缩</h5><p>HTTP1.1中的头部显得有些冗长。而HTTP2通过将其压缩成二进制数据的方法来减小头部大小。具体实现方法类似于将字段映射为索引，然后对值进行哈夫曼编码。</p>
+<h5 id="3-服务端推送Server-Push"><a href="#3-服务端推送Server-Push" class="headerlink" title="3. 服务端推送Server Push"></a>3. 服务端推送Server Push</h5><p>这个功能通常被称作“缓存推送”。主要的思想是：当一个客户端请求资源X，而服务器知道它很可能也需要资源Z的情况下，服务器可以在客户端发送请求前，主动将资源Z推送给客户端。</p>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><p>HTTP只存在客户端到服务器的单向请求，为了获取服务器状态的连续变化，HTTP采用<strong>轮询</strong>的方式，即每隔一段时间发送一个请求获取服务器状态变化。这样做非常浪费资源，需要不停的进行HTTP请求，或连接始终打开。</p>
+<p>由于HTTP本身存在<strong>服务器不能主动跟客户端建立通信</strong>的弊端，因此引入了WebSocket协议。</p>
+<h4 id="WebSocket的特点"><a href="#WebSocket的特点" class="headerlink" title="WebSocket的特点"></a>WebSocket的特点</h4><ol>
+<li>建立在 TCP 协议之上，服务器端的实现比较容易。</li>
+<li>与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</li>
+<li>数据格式比较轻量，性能开销小，通信高效。</li>
+<li>可以发送文本，也可以发送二进制数据。</li>
+<li>没有同源限制，客户端可以与任意服务器通信。</li>
+<li>协议标识符是<code>ws</code>（如果加密，则为<code>wss</code>），服务器网址就是 URL。</li>
+</ol>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ws://example.com:80/some/path</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/http/">http</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/&title=《浅谈HTTP协议的演进》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/&title=《浅谈HTTP协议的演进》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈HTTP协议的演进》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/08/26/virtual DOM与diff算法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">virtual DOM与diff算法（一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/&title=《浅谈HTTP协议的演进》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/&title=《浅谈HTTP协议的演进》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈HTTP协议的演进》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/09/24/浅谈HTTP协议的演进/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aUU7DMBAE0N7/0nCAKunsTiyK9PIVhdb4Bclexvt6xdfP2/X+0/f7q+/ej/b+rauRH7vw8PDw6qlfDX3/5J6X3CevJp8zHh4e3mne1YqaT6uaREzK54yHh4f3Pby+NL/fDKZUPDw8vP/C25XgTaGMh4eH92286XBNLJtHG8mm8ljWgoeHh7fJAQal8N/eHznfw8PDw6tP1XfLff4b87J+d+Hh4eGd4OUL7u4QKy+m85Bi/Prw8PDwDvDyJbsPVaej7bYlPDw8vHO83ZHVdMO4/1b+yXHRj4eHh3eAt9tDdp+c5q75HyCKevHw8PAO8KaxbF6CJ4HF9DNViwAeHh5ewcvbrabUpMhuIt2ooMfDw8M7wMuX4yRObdh54NtvaXh4eHgNL5luXyLvkLvGr3E9joeHhzfkNRHDrllqt3ftGgvw8PDwTvCShThvC3is/2sYlFy68PDw8A7wmoOrPKjNn/TjR/kKHh4e3qO83eKbbxi7sjvfAB7oKcPDw8OLebuBpq0Gg6W8CJqjeAIPDw+v4E3bnvIgOI9ip1PPx8fDw8N7lpdjmmapPHrIN4xx0xUeHh7eQ7xp6ZyX1+OehbiY3sXKeHh4eCd4uxaB/rAqeRG74AMPDw/vHK8pgvMNI48hmvJ9GePi4eHhrXhPFc27J9OmhEGEgYeHh3eY10wu2RjyKCFvQfjwHA8PD+8YrxpiGL/my/o0zH31DDw8PLzhlpAs0NNI9z5+7dsXPnRG4OHh4T3Kmx7k58j8BCqJjPP76XaCh4eHt+P1m8HugD/fPJqXiIeHh3eON+1WaqhNPJHHx3h4eHjfw5s2EzQHXf0hHB4eHt738PKFPg8RmuCjOt/Dw8PDW/H6I6s8RNgFE7uQAg8PD+8Eb/oP/24S0yi2CiDw8PDwTvF+AcEpSt9z68SGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
