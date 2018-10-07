@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>节流与防抖 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#005baa">
+    
+    
+    <meta name="keywords" content="JavaScript">
+    <meta name="description" content="在DOM事件监听时，常见的mousemove、scroll、keydown、resize操作都可能导致在短时间内事件过于频繁的触发。如果在此时进行了DOM操作，极大可能导致浏览器运行崩溃。为了防止此类事件的发生，我们引入节流(throttle)与防抖(debounce)这一对概念  定义与应用场景节流（throttle）：减少过快的调用让一个函数不要执行的太频繁 防抖（debounce）：对于一">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="节流与防抖">
+<meta property="og:url" content="https://jumper3.github.io/blog/2018/09/30/节流与防抖/index.html">
+<meta property="og:site_name" content="冷吃兔">
+<meta property="og:description" content="在DOM事件监听时，常见的mousemove、scroll、keydown、resize操作都可能导致在短时间内事件过于频繁的触发。如果在此时进行了DOM操作，极大可能导致浏览器运行崩溃。为了防止此类事件的发生，我们引入节流(throttle)与防抖(debounce)这一对概念  定义与应用场景节流（throttle）：减少过快的调用让一个函数不要执行的太频繁 防抖（debounce）：对于一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-30T14:16:05.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="节流与防抖">
+<meta name="twitter:description" content="在DOM事件监听时，常见的mousemove、scroll、keydown、resize操作都可能导致在短时间内事件过于频繁的触发。如果在此时进行了DOM操作，极大可能导致浏览器运行崩溃。为了防止此类事件的发生，我们引入节流(throttle)与防抖(debounce)这一对概念  定义与应用场景节流（throttle）：减少过快的调用让一个函数不要执行的太频繁 防抖（debounce）：对于一">
+    
+    <link rel="shortcut icon" href="/blog/favicon.ico">
+    <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/blog/img/blue.jpeg)">
+      <div class="brand">
+        <a href="/blog/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/blog/img/Rebecca_Rabbit.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jonathan</h5>
+          <a href="mailto:sls0927@gmail.com" title="sls0927@gmail.com" class="mail">sls0927@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jumper3" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/sls927" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                围脖
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/blog/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">节流与防抖</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">节流与防抖</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-09-30T14:17:59.000Z" itemprop="datePublished" class="page-time">
+  2018-09-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义与应用场景"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义与应用场景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#节流应用场景"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">节流应用场景</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#防抖应用场景"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">防抖应用场景</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#防抖的实现"><span class="post-toc-number">2.</span> <span class="post-toc-text">防抖的实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#节流的实现"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">节流的实现</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-节流与防抖"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">节流与防抖</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-09-30 22:17:59" datetime="2018-09-30T14:17:59.000Z"  itemprop="datePublished">2018-09-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>在DOM事件监听时，常见的mousemove、scroll、keydown、resize操作都可能导致在短时间内事件过于频繁的触发。如果在此时进行了DOM操作，极大可能导致浏览器运行崩溃。为了防止此类事件的发生，我们引入节流(throttle)与防抖(debounce)这一对概念</p>
+</blockquote>
+<h3 id="定义与应用场景"><a href="#定义与应用场景" class="headerlink" title="定义与应用场景"></a>定义与应用场景</h3><p>节流（throttle）：减少过快的调用让一个函数不要执行的太频繁</p>
+<p>防抖（debounce）：对于一定时间段连续的函数调用，只让其执行一次</p>
+<h4 id="节流应用场景"><a href="#节流应用场景" class="headerlink" title="节流应用场景"></a>节流应用场景</h4><ul>
+<li>DOM 元素的拖拽功能实现（mousemove）</li>
+<li>射击游戏的 mousedown/keydown 事件（单位时间只能发射一颗子弹）</li>
+<li>计算鼠标移动的距离（mousemove）</li>
+<li>搜索联想（keyup）</li>
+<li>监听滚动事件判断是否到页面底部自动加载更多：给 scroll 加了 debounce 后，只有用户停止滚动后，才会判断是否到了页面底部；如果是 throttle 的话，只要页面滚动就会间隔一段时间判断一次</li>
+</ul>
+<h4 id="防抖应用场景"><a href="#防抖应用场景" class="headerlink" title="防抖应用场景"></a>防抖应用场景</h4><ul>
+<li>每次 resize/scroll 触发统计事件</li>
+<li>文本输入的验证（连续输入文字后发送 AJAX 请求进行验证，验证一次就好）</li>
+</ul>
+<h3 id="防抖的实现"><a href="#防抖的实现" class="headerlink" title="防抖的实现"></a>防抖的实现</h3><p>防抖的基本思路是，当触发事件，判断当前是否存在定时器。如果没有，则创建定时器。如果存在，则清楚之前的定时器，重新创建定时器。这样做保证了在固定间隔内多次触发事件，只会执行一次。</p>
+<p>例子为模拟Ajax表单提交，规定点击间隔不能超过500ms</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"num"</span>&gt;</span>点击0次<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>click<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> total = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> changeNum = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="undefined">                total++</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.querySelector(<span class="string">'#num'</span>).textContent = <span class="string">`点击<span class="subst">$&#123;total&#125;</span>次`</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> changeNum</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, wait</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> timer</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">                clearTimeout(timer)</span></span><br><span class="line"><span class="javascript">                timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="undefined">                    fn()</span></span><br><span class="line"><span class="undefined">                &#125;, wait)</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> butt = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>)</span></span><br><span class="line"><span class="javascript">        butt.addEventListener(<span class="string">'click'</span>, debounce(send(), <span class="number">500</span>))</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="节流的实现"><a href="#节流的实现" class="headerlink" title="节流的实现"></a>节流的实现</h4><p>节流实现的基本思路是，规定一个时间间隔，第一次触发立即执行。之后每一次触发时，判断上一次触发时间，若时间差小于间隔，则该次触发无效。若本次触发时间差大于间隔，则触发事件，并设置新的触发时间。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"num"</span>&gt;</span>点击0次<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span>&gt;</span>click<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> total = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> changeNum = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="undefined">                total++</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.querySelector(<span class="string">'#num'</span>).textContent = <span class="string">`点击<span class="subst">$&#123;total&#125;</span>次`</span></span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> changeNum</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, gap</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> last = <span class="number">0</span> </span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> curr = <span class="keyword">new</span> <span class="built_in">Date</span>()</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (curr-last &gt; gap)&#123;</span></span><br><span class="line"><span class="undefined">                    fn()</span></span><br><span class="line"><span class="undefined">                    last = curr</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> butt = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>)</span></span><br><span class="line"><span class="javascript">        butt.addEventListener(<span class="string">'click'</span>, throttle(send(), <span class="number">500</span>))</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://jumper3.github.io/blog">
+            <img src="/blog/img/Rebecca_Rabbit.png" alt="Jonathan">
+            Jonathan
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/&title=《节流与防抖》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/&title=《节流与防抖》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/09/30/节流与防抖/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《节流与防抖》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/blog/2018/09/24/浅谈HTTP协议的演进/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">浅谈HTTP协议的演进</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/&title=《节流与防抖》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/&title=《节流与防抖》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://jumper3.github.io/blog/2018/09/30/节流与防抖/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《节流与防抖》 — 冷吃兔&url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://jumper3.github.io/blog/2018/09/30/节流与防抖/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHklEQVR42u3aQY6DMAwF0N7/0p3tbKDfNq2EeVlVlCY8RvLEsV+veLz/jaMrR786n60652hgYGDclvE+HUcPlFxJ7j+fJ3k2DAyM5zDOF+6FyOqjJ6/v8DoGBgZGEvKC31aRGBgYGFVGdUuXB9PkMwYGBkaSxCZXeodrk3swMDCewMhP3X//+Sv1DQwMjFsx3q2RL5Y/9GRgYGDsZswXq7ZZ5N+WN6MYGBirGXn7Vy/d7RU7k71ftFnEwMC4OaN39H/tgX61Oaz8HwMDA+PmjHyZJGhOgnj+mgpbQwwMjBWMasNENWj20tpq6RQDA+M5jF5TV14eyKnloI+BgfEwxmSZScAd3Y+BgbGa0TsIS17EZLbeJhIDA2MrI1m4+VZaATQvRXzobsPAwFjE6B3rV8uZV20rmwAMDIybM/JQW93S9UJntdiJgYHxHEY+aTWJ7W09z69/yL8xMDBWM65NQb/R5BqVMDEwMJYyJsdq+ZJJaO5tTDEwMHYz5mdyv9lclv8mGBgYixh502o+euXPy/pEMDAw1jGqCeqkUbWayjYLmRgYGOsYvWA6OSDL0+BCcwYGBsZqRj6Sg7PqQ0xCMwYGxtMY1fasPMgm1Ek5AQMD42mMa4uXo+aJVksHBgYGRu/ov7eVTIoNo4CLgYGxmpEH00k4TubBwMB4JiNPYpOFm6d6xddRqHJgYGDcnFFNHXuBMg/Q1eQZAwNjNeMP7bfp4B006XMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/blog/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/blog/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/blog/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '那我重新来过';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '鸡儿啦，遭卡起老';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
