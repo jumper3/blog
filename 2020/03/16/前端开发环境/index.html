@@ -13,24 +13,24 @@
     
     
     
-    <title>前端开发环境 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
+    <title>前端开发环境的搭建 | 冷吃兔 | 大家好，我是来自自贡的冷吃兔，我给大家表演一个吐粘痰</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#005baa">
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="现在的前端开发通常都是借助于现代的工程化工具（如webpack）来完成。 通常的环境分为开发环境(dev)，测试环境(beta)与生产环境(prod) 作用如下： 开发环境是开发者本地搭建的环境，常分为前端与node端 测试环境常用于给软件测试人员测试待开发的软件 待测试通过达到上线标准后发布线上版本 通常 哪些端 CDN Node 本地前端 本地node 后端服务  配置dev环境的目的就是为了">
+    <meta name="description" content="起源最原始的前端开发就是写一系列静态的html、css、JavaScript然后扔到服务器上，访问域名然后渲染网页。随着前端要求的越来越复杂，更多的工程化概念引入了进来，出现了node以及衍生出的打包工具webpack。前端的日益工程化带来了开发效率的飞跃，与此同时也带来了一些问题。本文要讲的就是在现代浏览器中，由于跨域的限制导致在开发环境下不能直接进行请求线上服务，因此有了代理的需要。 一般的开">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端开发环境">
+<meta property="og:title" content="前端开发环境的搭建">
 <meta property="og:url" content="https://jumper3.github.io/blog/2020/03/16/前端开发环境/index.html">
 <meta property="og:site_name" content="冷吃兔">
-<meta property="og:description" content="现在的前端开发通常都是借助于现代的工程化工具（如webpack）来完成。 通常的环境分为开发环境(dev)，测试环境(beta)与生产环境(prod) 作用如下： 开发环境是开发者本地搭建的环境，常分为前端与node端 测试环境常用于给软件测试人员测试待开发的软件 待测试通过达到上线标准后发布线上版本 通常 哪些端 CDN Node 本地前端 本地node 后端服务  配置dev环境的目的就是为了">
+<meta property="og:description" content="起源最原始的前端开发就是写一系列静态的html、css、JavaScript然后扔到服务器上，访问域名然后渲染网页。随着前端要求的越来越复杂，更多的工程化概念引入了进来，出现了node以及衍生出的打包工具webpack。前端的日益工程化带来了开发效率的飞跃，与此同时也带来了一些问题。本文要讲的就是在现代浏览器中，由于跨域的限制导致在开发环境下不能直接进行请求线上服务，因此有了代理的需要。 一般的开">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-17T02:24:09.457Z">
+<meta property="og:updated_time" content="2020-04-03T09:57:11.605Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端开发环境">
-<meta name="twitter:description" content="现在的前端开发通常都是借助于现代的工程化工具（如webpack）来完成。 通常的环境分为开发环境(dev)，测试环境(beta)与生产环境(prod) 作用如下： 开发环境是开发者本地搭建的环境，常分为前端与node端 测试环境常用于给软件测试人员测试待开发的软件 待测试通过达到上线标准后发布线上版本 通常 哪些端 CDN Node 本地前端 本地node 后端服务  配置dev环境的目的就是为了">
+<meta name="twitter:title" content="前端开发环境的搭建">
+<meta name="twitter:description" content="起源最原始的前端开发就是写一系列静态的html、css、JavaScript然后扔到服务器上，访问域名然后渲染网页。随着前端要求的越来越复杂，更多的工程化概念引入了进来，出现了node以及衍生出的打包工具webpack。前端的日益工程化带来了开发效率的飞跃，与此同时也带来了一些问题。本文要讲的就是在现代浏览器中，由于跨域的限制导致在开发环境下不能直接进行请求线上服务，因此有了代理的需要。 一般的开">
     
     <link rel="shortcut icon" href="/blog/favicon.ico">
     <link rel="stylesheet" href="/blog/css/style.css?v=1.7.2">
@@ -123,7 +123,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">前端开发环境</div>
+        <div class="flex-col header-title ellipsis">前端开发环境的搭建</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -145,7 +145,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">前端开发环境</h1>
+        <h1 class="title">前端开发环境的搭建</h1>
         <h5 class="subtitle">
             
                 <time datetime="2020-03-16T11:27:09.000Z" itemprop="datePublished" class="page-time">
@@ -168,7 +168,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#哪些端"><span class="post-toc-number">1.</span> <span class="post-toc-text">哪些端</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#起源"><span class="post-toc-number">1.</span> <span class="post-toc-text">起源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一般的开发流程"><span class="post-toc-number">2.</span> <span class="post-toc-text">一般的开发流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#开发及联调阶段"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">开发及联调阶段</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#测试阶段"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">测试阶段</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#发布阶段"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">发布阶段</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不同环境带来的问题"><span class="post-toc-number">3.</span> <span class="post-toc-text">不同环境带来的问题</span></a></li></ol>
         </nav>
     </aside>
 
@@ -177,7 +177,7 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">前端开发环境</h1>
+        <h1 class="post-card-title">前端开发环境的搭建</h1>
         <div class="post-meta">
             <time class="post-time" title="2020-03-16 19:27:09" datetime="2020-03-16T11:27:09.000Z"  itemprop="datePublished">2020-03-16</time>
 
@@ -192,21 +192,12 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>现在的前端开发通常都是借助于现代的工程化工具（如webpack）来完成。</p>
-<p>通常的环境分为开发环境(dev)，测试环境(beta)与生产环境(prod)</p>
-<p>作用如下：</p>
-<p>开发环境是开发者本地搭建的环境，常分为前端与node端</p>
-<p>测试环境常用于给软件测试人员测试待开发的软件</p>
-<p>待测试通过达到上线标准后发布线上版本</p>
-<p>通常</p>
-<h4 id="哪些端"><a href="#哪些端" class="headerlink" title="哪些端"></a>哪些端</h4><ul>
-<li>CDN</li>
-<li>Node</li>
-<li>本地前端</li>
-<li>本地node</li>
-<li>后端服务</li>
-</ul>
-<p>配置dev环境的目的就是为了模拟线上打包后的环境，通常借助于nginx、charles、hiproxy等工具将域名进行拦截到本地。</p>
+            <h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>最原始的前端开发就是写一系列静态的html、css、JavaScript然后扔到服务器上，访问域名然后渲染网页。随着前端要求的越来越复杂，更多的工程化概念引入了进来，出现了node以及衍生出的打包工具webpack。前端的日益工程化带来了开发效率的飞跃，与此同时也带来了一些问题。本文要讲的就是在现代浏览器中，由于<strong>跨域</strong>的限制导致在开发环境下不能直接进行请求线上服务，因此有了代理的需要。</p>
+<h3 id="一般的开发流程"><a href="#一般的开发流程" class="headerlink" title="一般的开发流程"></a>一般的开发流程</h3><p>目前主流的开发流程通常包含了开发(dev)、测试(beat)、与生产(prod)环境。其中开发环境通常是程序员在本地搭建的用于开发调试的环境，开发的过程中及时同步代码到仓库。</p>
+<h4 id="开发及联调阶段"><a href="#开发及联调阶段" class="headerlink" title="开发及联调阶段"></a>开发及联调阶段</h4><p>目前主流的前后端分离的开发方式，在开发前前后端会有一个约定好的api、以此为依据在开发过程中mock一个接口。前期后端没有完成该接口时前端靠mock的接口来代替，这个mock接口可以是本地的数据，也可以是搭建在远程的mock服务器（如Yapi）。在联调阶段，后端完成了接口后会将自己的代码部署在beta服务器上，然后前端以切hosts的方式将前端请求打到后端的beta接口上进行联调。</p>
+<h4 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h4><p>待程序员开发完成后，需要QA测试开发好的代码，因此QA会从代码仓库中拉取代码并在QA的beta环境中部署。一旦QA发现问题及时通报开发，待开发修改后再验证，如此往复直到到达上线标准。</p>
+<h4 id="发布阶段"><a href="#发布阶段" class="headerlink" title="发布阶段"></a>发布阶段</h4><p>代码到达上线标准后，应将代码部署到正式的线上服务器。通常前端的部署都是增量更新的，即本次的更新只是在之前已经发布代码基础上的部分替换，以保证项目整体的稳定性。</p>
+<h3 id="不同环境带来的问题"><a href="#不同环境带来的问题" class="headerlink" title="不同环境带来的问题"></a>不同环境带来的问题</h3><p>由于一般的开发涉及到多个不同的环境，那么我们就需要一套机制来保证开发好的代码能在这些不同的环境中顺利的对接上。正如上面所说的，浏览器的跨域机制会限制前端发起的请求，从而给</p>
 
         </div>
 
@@ -233,7 +224,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境的搭建》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -243,7 +234,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境的搭建》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -253,7 +244,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端开发环境》 — 冷吃兔&url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端开发环境的搭建》 — 冷吃兔&url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&via=https://jumper3.github.io/blog" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -336,7 +327,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境的搭建》 — 冷吃兔&pic=https://jumper3.github.io/blog/img/Rebecca_Rabbit.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -346,7 +337,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&title=《前端开发环境的搭建》 — 冷吃兔&source=个人技术博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -356,7 +347,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端开发环境》 — 冷吃兔&url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&via=https://jumper3.github.io/blog" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端开发环境的搭建》 — 冷吃兔&url=https://jumper3.github.io/blog/2020/03/16/前端开发环境/&via=https://jumper3.github.io/blog" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
